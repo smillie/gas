@@ -33,7 +33,7 @@
 											echo '<div class="control-group">';
 											echo '<label class="control-label" for="uid"><button class="btn btn-danger" href="#">Delete</button></label>';
 											echo '<div class="controls">';
-											echo '<textarea class="input-xlarge" id="textarea" rows="3" placeholder="'.$key.'" disabled="disabled"></textarea>';
+											echo '<textarea class="input-xlarge" id="textarea" rows="7" disabled="disabled">'.$key.'</textarea>';
 											echo '</div>';
 											echo '</div>';
 										}
