@@ -1,9 +1,6 @@
 <?php require 'header.php'; ?>
 
 				<div class="span10">
-          <!-- <div class="page-header">
-            <h1>Your GeekSoc Account:</h1>
-          </div> -->
           <div class="row-fluid">
             <div class="span4">
 							<form class="form-horizontal">
@@ -77,8 +74,6 @@
 									</div>
 							  </fieldset>
 							</form>
-							
-              <!-- <p><a class="btn" href="#">View details &raquo;</a></p> -->
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->

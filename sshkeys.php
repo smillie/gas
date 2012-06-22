@@ -1,20 +1,11 @@
 <?php require 'header.php'; ?>
 
         <div class="span10">
-          <!-- <div class="page-header">
-            <h1>Your GeekSoc Account:</h1>
-          </div> -->
           <div class="row-fluid">
             <div class="span4">
 							<form class="form-horizontal">
 							  <fieldset>
 							    <legend>SSH Keys</legend>
-							    <!-- <div class="control-group">
-							      <label class="control-label" for="uid"><button class="btn btn-danger" href="#">Delete</button></label>
-							      <div class="controls">
-							        <textarea class="input-xlarge" id="textarea" rows="3" placeholder="<?php echo $user_get[0]["sshpublickey"][0]; ?>" disabled="disabled"></textarea>
-							      </div>
-							    </div> -->
 							
 									<?php
 										foreach (array_slice($user_get[0]["sshpublickey"], 1) as $key) {
@@ -39,8 +30,6 @@
 									</div>
 							  </fieldset>
 							</form>
-							
-              <!-- <p><a class="btn" href="#">View details &raquo;</a></p> -->
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->
