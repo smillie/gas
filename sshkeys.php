@@ -42,7 +42,7 @@
 							    <div class="control-group">
 							      <label class="control-label" for="uid">Add Key</label>
 							      <div class="controls">
-							        <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
+							        <textarea class="input-xlarge" id="textarea" rows="7"></textarea>
 							      </div>
 							    </div>
 							
