@@ -48,6 +48,7 @@
 											<?php
 												$day = intval(time()/(60*60*24));
 												$i = (int)$user_get[0]["shadowexpire"][0];
+												if (!isset($user_get[0]["shadowexpire"][0])) $i=99999;
 												$status = "Active";
 												$stat_icon = "icon-ok";
 												if ($user_get[0]["haspaid"][0] == "FALSE") {

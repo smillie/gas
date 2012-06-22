@@ -45,17 +45,21 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">GeekSoc Account System</a>
-          <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> <?php echo $user_get[0]["uid"][0]; ?>
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- <li><a href="#">Profile</a></li>
-              <li class="divider"></li> -->
-              <li><a href="index.php">Sign Out</a></li>
-            </ul>
-          </div>
+					<?php
+						if(isset($_SESSION['user'])) {
+		          echo '<div class="btn-group pull-right">';
+		            echo '<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">';
+		              echo '<i class="icon-user"></i>'.$_SESSION['user'];
+		              echo '<span class="caret"></span>';
+		            echo '</a>';
+		            echo '<ul class="dropdown-menu">';
+		              echo '<!-- <li><a href="#">Profile</a></li>';
+		              echo '<li class="divider"></li> -->';
+		              echo '<li><a href="logout.php">Sign Out</a></li>';
+		            echo '</ul>';
+		          echo '</div>';
+						}
+					?>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
