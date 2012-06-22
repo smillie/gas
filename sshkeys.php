@@ -12,7 +12,7 @@
 									<?php
 										foreach (array_slice($user_get[0]["sshpublickey"], 1) as $key) {
 											echo '<div class="control-group">';
-											echo '<label class="control-label" for="uid"><button class="btn btn-danger" href="#">Delete</button></label>';
+											echo '<label class="control-label" for="uid"><button class="btn btn-danger" href="#"><i class="icon-trash icon-white"></i> Delete</button></label>';
 											echo '<div class="controls">';
 											echo '<textarea class="input-xlarge" id="textarea" rows="7" disabled="disabled">'.$key.'</textarea>';
 											echo '</div>';
