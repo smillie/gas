@@ -1,3 +1,4 @@
+<?php require 'ldapconnect.php'; ?>
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
 

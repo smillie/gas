@@ -1,4 +1,3 @@
-<?php require 'ldapconnect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,7 +43,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">GeekSoc Account System</a>
+          <a class="brand" href="index.php">GeekSoc Account System</a>
 					<?php
 						if(isset($_SESSION['user'])) {
 		          echo '<div class="btn-group pull-right">';
@@ -62,7 +61,7 @@
 					?>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="index.php">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
