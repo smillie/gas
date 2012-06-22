@@ -17,7 +17,6 @@
 				<?php
 					if (isset($_GET['error'])) {
 						echo '<div class="alert alert-error">';
-				  		echo '<button class="close" data-dismiss="alert">×</button>';
 				  		echo '<strong>Error:</strong> Username or password is incorrect.';
 						echo '</div>';
 					}
