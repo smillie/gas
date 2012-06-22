@@ -1,18 +1,6 @@
 <?php require 'header.php'; ?>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span2">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header"><img src="http://www.gravatar.com/avatar/<?php echo $avatar; ?>?s=20&d=mm" /> <?php echo $user_get[0]["uid"][0]; ?></li>
-              <li class="active"><a href="index.php">Details</a></li>
-              <li><a href="password.php">Change Password</a></li>
-              <li><a href="sshkeys.php">SSH Keys</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span10">
+				<div class="span10">
           <!-- <div class="page-header">
             <h1>Your GeekSoc Account:</h1>
           </div> -->
