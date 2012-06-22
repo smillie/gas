@@ -1,4 +1,5 @@
 <?php require 'header.php'; ?>
+<?php require 'menu.php'; ?>
 
         <div class="span10">
           <div class="row-fluid">
@@ -35,6 +36,4 @@
         </div><!--/span-->
       </div><!--/row-->
 
-      <hr>
-
-      <?php require 'footer.php'; ?>
+<?php require 'footer.php'; ?>
