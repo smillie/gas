@@ -1,7 +1,7 @@
 <?php
-	if(!isset($_SESSION['user']) && !(strpos($_SERVER['PHP_SELF'], 'index.php'))) {
-	  header( 'Location: index.php' );
-	}
+  if(!isset($_SESSION['user']) && !(strpos($_SERVER['PHP_SELF'], 'index.php'))) {
+    header( 'Location: index.php' );
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,21 +49,21 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="index.php">GeekSoc Account System</a>
-					<?php
-						if(isset($_SESSION['user'])) {
-		          echo '<div class="btn-group pull-right">';
-		            echo '<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">';
-		              echo '<i class="icon-user"></i>'.$_SESSION['user'];
-		              echo '<span class="caret"></span>';
-		            echo '</a>';
-		            echo '<ul class="dropdown-menu">';
-		              echo '<!-- <li><a href="#">Profile</a></li>';
-		              echo '<li class="divider"></li> -->';
-		              echo '<li><a href="logout.php">Sign Out</a></li>';
-		            echo '</ul>';
-		          echo '</div>';
-						}
-					?>
+          <?php
+            if(isset($_SESSION['user'])) {
+              echo '<div class="btn-group pull-right">';
+                echo '<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">';
+                  echo '<i class="icon-user"></i>'.$_SESSION['user'];
+                  echo '<span class="caret"></span>';
+                echo '</a>';
+                echo '<ul class="dropdown-menu">';
+                  echo '<!-- <li><a href="#">Profile</a></li>';
+                  echo '<li class="divider"></li> -->';
+                  echo '<li><a href="logout.php">Sign Out</a></li>';
+                echo '</ul>';
+              echo '</div>';
+            }
+          ?>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="index.php">Home</a></li>
