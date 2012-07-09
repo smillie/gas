@@ -9,7 +9,7 @@
 
 <div class="container">
 <div class="hero-unit span6 offset2" style="text-align: center">
-  <h1>GeekSoc Account System</h1>
+  <h1 style="font-size:40px;">GeekSoc Account System</h1>
   <form class="form-horizontal" action="login.php" method="post">
     <fieldset>
       <legend>Login</legend>

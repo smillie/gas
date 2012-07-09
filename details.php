@@ -19,6 +19,7 @@
     
     
     ldap_modify($con,$userdn,$entry);
+    $success = "Details updated successfully.";
     
     $user_search = ldap_search($con, $dn, "(uid=$user)");
     $user_get = ldap_get_entries($con, $user_search); 
@@ -34,6 +35,13 @@
               <form class="form-horizontal" action="details.php" method="post">
                 <fieldset>
                   <legend>Account Details</legend>
+                    <?php
+                      if (isset($success)) {
+                      echo '<div class="alert alert-success">';
+                        echo "$success";
+                      echo '</div>';
+                      }
+                    ?>
                   <div class="control-group">
                     <label class="control-label" for="uid">Account Name</label>
                     <div class="controls">

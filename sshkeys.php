@@ -3,13 +3,18 @@
     if (isset($_POST['delete'])) {
         $userinfo["sshpublickey"] = str_replace("\r\n", "\n", $_POST['delete']);
         ldap_mod_del($con, $userdn, $userinfo);
-        header( 'Location: sshkeys.php' );
+        $user_search = ldap_search($con, $dn, "(uid=$user)");
+        $user_get = ldap_get_entries($con, $user_search);  
+        $success = "Deleted key sucessfully.";
     } else if (isset($_FILES['uploadedkey'])) {
         $newkey = file_get_contents($_FILES['uploadedkey']['tmp_name']);
-        //$attrs['sshpublickey'] =  str_replace("\r\n", "\n", $newkey);
         $attrs['sshpublickey'] = $newkey;
-        ldap_mod_add($con, $userdn, $attrs);
-        header( 'Location: sshkeys.php' );
+        if (strlen($newkey) > 0) {
+            ldap_mod_add($con, $userdn, $attrs);
+        }
+        $user_search = ldap_search($con, $dn, "(uid=$user)");
+        $user_get = ldap_get_entries($con, $user_search);  
+        $success = "Added key successfully.";
     }
 ?>
 <?php require 'header.php'; ?>
@@ -22,6 +27,14 @@
                 <fieldset>
                   <legend>SSH Keys</legend>
               
+                    <?php
+                      if (isset($success)) {
+                      echo '<div class="alert alert-success">';
+                        echo "$success";
+                      echo '</div>';
+                      }
+                    ?>
+
                   <?php
                     foreach (array_slice($user_get[0]["sshpublickey"], 1) as $key) {
                       echo '<div class="control-group">';

@@ -9,6 +9,7 @@
         $entry['userpassword']=$password;
         $_SESSION['password']=$_POST['newpw'];
         ldap_modify($con,$userdn,$entry);
+        $success = "Password updated successfully.";
       } else {
         $error = "<strong>Error:</strong> Password do not match.";
       }
@@ -32,8 +33,13 @@
                         echo '<div class="alert alert-error">';
                           echo $error;
                         echo '</div>';
+                      } else if (isset($success)) {
+                      echo '<div class="alert alert-success">';
+                        echo "$success";
+                      echo '</div>';
                       }
                     ?>
+
                     <label class="control-label" for="oldpw">Old Password</label>
                     <div class="controls">
                       <input type="password" class="input-xlarge" name="oldpw" id="oldpw">
