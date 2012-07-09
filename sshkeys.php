@@ -3,7 +3,12 @@
     if (isset($_POST['delete'])) {
         $userinfo["sshpublickey"] = str_replace("\r\n", "\n", $_POST['delete']);
         ldap_mod_del($con, $userdn, $userinfo);
-        echo ldap_error($con);
+        header( 'Location: sshkeys.php' );
+    } else if (isset($_FILES['uploadedkey'])) {
+        $newkey = file_get_contents($_FILES['uploadedkey']['tmp_name']);
+        //$attrs['sshpublickey'] =  str_replace("\r\n", "\n", $newkey);
+        $attrs['sshpublickey'] = $newkey;
+        ldap_mod_add($con, $userdn, $attrs);
         header( 'Location: sshkeys.php' );
     }
 ?>
@@ -13,7 +18,7 @@
         <div class="span10">
           <div class="row-fluid">
             <div class="span4">
-              <form class="form-horizontal" action="sshkeys.php" method="post">
+              <form enctype="multipart/form-data" class="form-horizontal" action="sshkeys.php" method="post">
                 <fieldset>
                   <legend>SSH Keys</legend>
               
@@ -31,7 +36,7 @@
                   <div class="control-group">
                     <label class="control-label" for="uid">Add Key</label>
                     <div class="controls">
-                      <textarea class="input-xlarge" id="textarea" rows="7"></textarea>
+                         <input name="uploadedkey" type="file" />
                     </div>
                   </div>
               
