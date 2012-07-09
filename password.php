@@ -4,7 +4,9 @@
     ldap_unbind();
     if (ldap_bind($con, $userdn, $_POST['oldpw'])===true) {
       if ($_POST['confirmpw'] == $_POST['newpw']) {
-        $password="{MD5}".base64_encode(pack("H*",md5($_POST['newpw'])));
+        mt_srand((double)microtime()*1000000);
+        $salt = pack("CCCCCCCC", mt_rand(), mt_rand(), mt_rand(), mt_rand(), mt_rand(), mt_rand(), mt_rand(), mt_rand());
+        $password = "{SSHA}" . base64_encode( sha1( $_POST['newpw'] . $salt, true) . $salt );
         $entry=array();
         $entry['userpassword']=$password;
         $_SESSION['password']=$_POST['newpw'];
