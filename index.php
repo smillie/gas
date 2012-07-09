@@ -14,13 +14,11 @@
     <fieldset>
       <legend>Login</legend>
       <div class="control-group">
-        <?php
-          if (isset($_GET['error'])) {
-            echo '<div class="alert alert-error">';
-              echo '<strong>Error:</strong> Username or password is incorrect.';
-            echo '</div>';
-          }
-        ?>
+        <?php if (isset($_GET['error'])) : ?>
+            <div class="alert alert-error">
+              <strong>Error:</strong> Username or password is incorrect.
+            </div>
+        <?php endif ?>
         <label class="control-label" for="uid">Username</label>
         <div class="controls">
           <input type="text" class="input-xlarge" id="uid" name="uid">
@@ -33,7 +31,7 @@
         </div>
       </div>
       <div class="">
-        <button type="button" class="btn " disabled="disabled">Create Account</button>
+        <!-- <button type="button" class="btn " disabled="disabled">Create Account</button> -->
         <button type="submit" class="btn btn-primary">Login</button>
       </div>
     </fieldset>

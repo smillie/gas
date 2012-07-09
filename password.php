@@ -28,18 +28,15 @@
                 <fieldset>
                   <legend>Change Password</legend>
                   <div class="control-group">
-                    <?php
-                      if (isset($error)) {
-                        echo '<div class="alert alert-error">';
-                          echo $error;
-                        echo '</div>';
-                      } else if (isset($success)) {
-                      echo '<div class="alert alert-success">';
-                        echo "$success";
-                      echo '</div>';
-                      }
-                    ?>
-
+                    <?php if (isset($error)) : ?>
+                      <div class="alert alert-error">
+                        <?php echo "$error"; ?>
+                      </div>
+                    <?php elseif (isset($success)) : ?>
+                      <div class="alert alert-success">
+                        <?php echo "$success"; ?>
+                      </div>
+                    <?php endif; ?>
                     <label class="control-label" for="oldpw">Old Password</label>
                     <div class="controls">
                       <input type="password" class="input-xlarge" name="oldpw" id="oldpw">

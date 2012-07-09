@@ -35,15 +35,13 @@
               <form class="form-horizontal" action="details.php" method="post">
                 <fieldset>
                   <legend>Account Details</legend>
-                    <?php
-                      if (isset($success)) {
-                      echo '<div class="control-group">';
-                        echo '<div class="alert alert-success">';
-                          echo "$success";
-                        echo '</div>';
-                      echo '</div>';
-                      }
-                    ?>
+                    <?php if (isset($success)) : ?>
+                    <div class="control-group">
+                      <div class="alert alert-success">
+                        <?php echo "$success"; ?>
+                      </div>
+                    </div>
+                    <?php endif; ?>
                   <div class="control-group">
                     <label class="control-label" for="uid">Account Name</label>
                     <div class="controls">

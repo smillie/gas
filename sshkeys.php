@@ -26,27 +26,23 @@
               <form enctype="multipart/form-data" class="form-horizontal" action="sshkeys.php" method="post">
                 <fieldset>
                   <legend>SSH Keys</legend>
-                    <?php
-                      if (isset($success)) {
-                          
-                      echo '<div class="control-group">';
-                        echo '<div class="alert alert-success">';
-                          echo "$success";
-                        echo '</div>';
-                      echo '</div>';
-                      }
-                    ?>
+                    <?php if (isset($success)) : ?>
+                    <div class="control-group">
+                      <div class="alert alert-success">
+                        <?php echo "$success"; ?>
+                      </div>
+                    </div>
+                    <?php endif; ?>
 
-                  <?php
-                    foreach (array_slice($user_get[0]["sshpublickey"], 1) as $key) {
-                      echo '<div class="control-group">';
-                      echo '<label class="control-label" for="uid"><button name="delete" value="'.$key.'"type="submit" class="btn btn-danger" ><i class="icon-trash icon-white"></i> Delete</button></label>';
-                      echo '<div class="controls">';
-                      echo '<textarea class="input-xlarge" id="textarea" rows="7" disabled="disabled">'.$key.'</textarea>';
-                      echo '</div>';
-                      echo '</div>';
-                    }
-                  ?>
+
+                    <?php foreach (array_slice($user_get[0]["sshpublickey"], 1) as $key): ?>
+                    <div class="control-group">
+                        <label class="control-label" for="uid"><button name="delete" value="<?php echo $key; ?>"type="submit" class="btn btn-danger" ><i class="icon-trash icon-white"></i> Delete</button></label>
+                        <div class="controls">
+                            <textarea class="input-xlarge" id="textarea" rows="7" disabled="disabled"><?php echo $key; ?></textarea>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
               
                   <div class="control-group">
                     <label class="control-label" for="uid">Add Key</label>
