@@ -11,10 +11,10 @@
         $attrs['sshpublickey'] = $newkey;
         if (strlen($newkey) > 0) {
             ldap_mod_add($con, $userdn, $attrs);
+            $success = "Added key successfully.";
         }
         $user_search = ldap_search($con, $dn, "(uid=$user)");
         $user_get = ldap_get_entries($con, $user_search);  
-        $success = "Added key successfully.";
     }
 ?>
 <?php require 'header.php'; ?>
@@ -26,11 +26,13 @@
               <form enctype="multipart/form-data" class="form-horizontal" action="sshkeys.php" method="post">
                 <fieldset>
                   <legend>SSH Keys</legend>
-              
                     <?php
                       if (isset($success)) {
-                      echo '<div class="alert alert-success">';
-                        echo "$success";
+                          
+                      echo '<div class="control-group">';
+                        echo '<div class="alert alert-success">';
+                          echo "$success";
+                        echo '</div>';
                       echo '</div>';
                       }
                     ?>

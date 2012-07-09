@@ -9,7 +9,7 @@
         $entry['userpassword']=$password;
         $_SESSION['password']=$_POST['newpw'];
         ldap_modify($con,$userdn,$entry);
-        $success = "Password updated successfully.";
+        $success = "Passwords updated successfully.";
       } else {
         $error = "<strong>Error:</strong> Password do not match.";
       }

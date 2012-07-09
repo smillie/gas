@@ -37,8 +37,10 @@
                   <legend>Account Details</legend>
                     <?php
                       if (isset($success)) {
-                      echo '<div class="alert alert-success">';
-                        echo "$success";
+                      echo '<div class="control-group">';
+                        echo '<div class="alert alert-success">';
+                          echo "$success";
+                        echo '</div>';
                       echo '</div>';
                       }
                     ?>
