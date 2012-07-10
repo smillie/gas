@@ -8,7 +8,7 @@
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'password.php'))? 'class="active"':null) ?>><a href="password.php">Change Password</a></li>
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'sshkeys.php'))? 'class="active"':null) ?>><a href="sshkeys.php">SSH Keys</a></li>
           <li class="nav-header">User Administration</li>
-          <li><a href="#">Add User</a></li>
+          <li <?php echo((strpos($_SERVER['PHP_SELF'], 'adduser.php'))? 'class="active"':null) ?>><a href="adduser.php">Add User</a></li>
           <li><a href="#">Edit User</a></li>
           <li><a href="#">List Users</a></li>
         </ul>
