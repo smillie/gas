@@ -121,6 +121,14 @@ Email: $email
 EOT;
             mail("gsag@geeksoc.org", "[GeekSoc] New account created", $adminEmail, "From: support@geeksoc.org");
 
+        //irc creation notice (#gsag)
+            $message = "#gsag Account created for $first $last: Username: $uid, Email: $email (by $user)";
+            $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+            socket_connect($sock, "irc.geeksoc.org", 5050);
+            socket_write($sock, $message, strlen($message));
+            socket_close($sock);
+
+
             $success = "Created user '$uid' with password '$pass'.";
         }
     }
