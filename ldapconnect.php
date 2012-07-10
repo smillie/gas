@@ -21,4 +21,13 @@
 
     $avatar = md5( strtolower( trim($user_get[0]["mail"][0] ) ) );
   }
+
+  function isUserInGroup($con, $user, $group) {
+      $group_search = ldap_search($con, "cn=$group,ou=groups,dc=geeksoc,dc=org", "(memberUid=$user)");
+      if (ldap_count_entries($con, $group_search) >= 1) {
+          return true;
+      } else {
+          return false;
+      }
+  }
 ?>

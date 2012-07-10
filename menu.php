@@ -7,10 +7,12 @@
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'details.php'))? 'class="active"':null) ?>><a href="details.php">Details</a></li>
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'password.php'))? 'class="active"':null) ?>><a href="password.php">Change Password</a></li>
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'sshkeys.php'))? 'class="active"':null) ?>><a href="sshkeys.php">SSH Keys</a></li>
+          <?php if (isUserInGroup($con, $user, "gsag")) : ?>
           <li class="nav-header">User Administration</li>
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'adduser.php'))? 'class="active"':null) ?>><a href="adduser.php">Add User</a></li>
           <li><a href="#">Edit User</a></li>
           <li><a href="#">List Users</a></li>
+          <?php endif; ?>
         </ul>
       </div><!--/.well -->
     </div><!--/span-->

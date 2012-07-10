@@ -1,6 +1,8 @@
 <?php require 'ldapconnect.php'; ?>
 <?php
-
+if (!isUserInGroup($con, $user, "gsag")) {
+    header( 'Location: index.php' );
+}
     function generatePassword ($length = 8) {
         $password = "";
         $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
