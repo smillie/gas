@@ -1529,7 +1529,7 @@ table {
   line-height: 18px;
   text-align: left;
   vertical-align: top;
-/*  border-top: 1px solid #dddddd;*/
+  border-top: 1px solid #dddddd;
 }
 
 .table th {
@@ -4981,3 +4981,4 @@ a.badge:hover {
 .invisible {
   visibility: hidden;
 }
+

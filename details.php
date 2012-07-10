@@ -96,7 +96,7 @@
                         }
                         if ($i <= $day) {
                           $status = "Expired";
-                          $stat_icon = "icon-ban-circle";
+                          $stat_icon = "icon-exclamation-sign";
                         }
                         if ($i == 1) {
                           $status = "Administratively Disabled";
