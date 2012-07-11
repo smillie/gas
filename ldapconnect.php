@@ -1,5 +1,6 @@
 <?php 
   session_start();
+  session_regenerate_id();
 
   $server = "ldap://ldap.geeksoc.org";
   $dn = "ou=People,dc=geeksoc,dc=org";
@@ -30,4 +31,22 @@
           return false;
       }
   }
+
+      function generatePassword ($length = 8) {
+        $password = "";
+        $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
+        $maxlength = strlen($possible);
+        if ($length > $maxlength) {
+          $length = $maxlength;
+        }
+        $i = 0; 
+        while ($i < $length) { 
+          $char = substr($possible, mt_rand(0, $maxlength-1), 1);
+          if (!strstr($password, $char)) { 
+            $password .= $char;
+            $i++;
+          }
+        }
+        return $password;
+    }
 ?>

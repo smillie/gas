@@ -44,6 +44,7 @@ $results = ldap_get_entries($con, $search);
             <table class="table ">
                 <thead>
                   <tr>
+                    <th></th>
                     <th>Account Name</th>
                     <th>Full Name</th>
                     <th>Student Number</th>
@@ -54,10 +55,11 @@ $results = ldap_get_entries($con, $search);
                 <tbody>
                 <?php foreach (array_slice($results, 1) as $user) : ?>
                     <tr>
+                    <td><a href="edit.php?user=<?php echo $user['uid'][0]?>" class="btn btn-mini">Edit</a></td>
                         <td><?php echo $user['uid'][0]; ?></td>
                         <td><?php echo $user['cn'][0]; ?></td>
                         <td><?php echo $user['studentnumber'][0]; ?></td>
-                        <td><?php echo $user['mail'][0]; ?></td>
+                        <td><a href="mailto:<?php echo $user['mail'][0]?>"><?php echo $user['mail'][0]; ?></a></td>
                         <td><?php echo getStatus($user['shadowexpire'][0], $user['haspaid'][0]); ?></td>
                     </tr>
                 <?php endforeach; ?>

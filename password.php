@@ -13,7 +13,7 @@
         ldap_modify($con,$userdn,$entry);
         $success = "Passwords updated successfully.";
       } else {
-        $error = "<strong>Error:</strong> Password do not match.";
+        $error = "<strong>Error:</strong> Passwords do not match.";
       }
     } else {
       $error = "<strong>Error:</strong> Password incorrect.";
