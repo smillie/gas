@@ -1,5 +1,3 @@
-<div class="container-fluid">
-  <div class="row-fluid">
     <div class="span2">
       <div class="well sidebar-nav">
         <ul class="nav nav-list">

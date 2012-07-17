@@ -1,3 +1,4 @@
+<?php require 'functions.php'; ?>
 <?php 
   session_start();
   session_regenerate_id();
@@ -23,30 +24,4 @@
     $avatar = md5( strtolower( trim($user_get[0]["mail"][0] ) ) );
   }
 
-  function isUserInGroup($con, $user, $group) {
-      $group_search = ldap_search($con, "cn=$group,ou=groups,dc=geeksoc,dc=org", "(memberUid=$user)");
-      if (ldap_count_entries($con, $group_search) >= 1) {
-          return true;
-      } else {
-          return false;
-      }
-  }
-
-      function generatePassword ($length = 8) {
-        $password = "";
-        $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
-        $maxlength = strlen($possible);
-        if ($length > $maxlength) {
-          $length = $maxlength;
-        }
-        $i = 0; 
-        while ($i < $length) { 
-          $char = substr($possible, mt_rand(0, $maxlength-1), 1);
-          if (!strstr($password, $char)) { 
-            $password .= $char;
-            $i++;
-          }
-        }
-        return $password;
-    }
 ?>

@@ -1,5 +1,8 @@
 <?php require 'ldapconnect.php'; ?>
 <?php
+
+    $pageTitle = " - SSH Keys";    
+
     if (isset($_POST['delete'])) {
         $userinfo["sshpublickey"] = str_replace("\r\n", "\n", $_POST['delete']);
         ldap_mod_del($con, $userdn, $userinfo);
@@ -59,6 +62,5 @@
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->
-      </div><!--/row-->
 
 <?php require 'footer.php'; ?>

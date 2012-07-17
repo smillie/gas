@@ -4,6 +4,8 @@ if (!isUserInGroup($con, $user, "gsag")) {
     header( 'Location: index.php' );
 }
    
+    $pageTitle = ' - Add User';    
+
     if (isset($_POST['firstname']) && strlen($_POST['uid']) > 2) {
     //check if username exists
         $uid = $_POST['uid'];
@@ -174,6 +176,5 @@ EOT;
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->
-      </div><!--/row-->
 
 <?php require 'footer.php'; ?>

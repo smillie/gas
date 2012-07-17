@@ -1,5 +1,8 @@
 <?php require 'ldapconnect.php'; ?>
 <?php
+
+    $pageTitle = " - Change Password";    
+
   if (isset($_POST['oldpw'])) {
     ldap_unbind();
     if (ldap_bind($con, $userdn, $_POST['oldpw'])===true) {
@@ -64,6 +67,5 @@
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->
-      </div><!--/row-->
 
 <?php require 'footer.php'; ?>

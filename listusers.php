@@ -4,30 +4,7 @@ if (!isUserInGroup($con, $user, "gsag")) {
     header( 'Location: index.php' );
 }
 
-function getStatus($expiry, $paid) {
-    $day = intval(time()/(60*60*24));
-    $i = (int)$expiry;
-    if (!isset($expiry)) $i=99999;
-    $status = "Active";
-    $stat_icon = "icon-ok";
-    if ($paid == "FALSE") {
-      $status = "Not Paid";
-      $stat_icon = "icon-exclamation-sign";
-    } 
-    if ($i <= ($day+60)) {
-      $status = "Expiring";
-      $stat_icon = "icon-exclamation-sign";
-    }
-    if ($i <= $day) {
-      $status = "Expired";
-      $stat_icon = "icon-exclamation-sign";
-    }
-    if ($i == 1) {
-      $status = "Administratively Disabled";
-      $stat_icon = "icon-ban-circle";
-    }
-    return "<i class='$stat_icon'></i> $status";
-}
+$pageTitle = ' - All Users';
 
 $search = ldap_search($con, $dn, "(objectclass=posixaccount)");
 ldap_sort($con, $search, 'uid');
@@ -67,5 +44,4 @@ $results = ldap_get_entries($con, $search);
               </table>    
         </div>
     </div>
-</div>
 <?php require 'footer.php'; ?>

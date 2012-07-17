@@ -1,3 +1,4 @@
+</div>
 <hr>
 <footer>
   <p>&copy; GeekSoc 2012</p>
