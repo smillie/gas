@@ -60,7 +60,7 @@ EOT;
         }
     }
     else {
-        header( 'Location: listusers.php' );
+        //header( 'Location: listusers.php' );
     }
 
     if (isset($_POST['update'])) {
@@ -114,6 +114,7 @@ EOT;
         <div class="span10">
           <div class="row-fluid">
             <div class="span4">
+            <?php if (isset($_GET['user']) && !isset($_POST['delete'])) : ?>
               <form class="form-horizontal" action="edit.php?user=<?php echo $u; ?>" method="post">
                 <fieldset>
                   <legend>Edit User</legend>
@@ -127,7 +128,6 @@ EOT;
                         <?php echo "$success"; ?>
                       </div>
                     <?php endif; ?>
-                    <?php if (isset($_GET['user']) && !isset($_POST['delete'])) : ?>
                     <label class="control-label" for="uid">Account Name</label>
                     <div class="controls">
                       <span class="input-xlarge uneditable-input"><?php echo $result[0]["uid"][0]; ?></span>
@@ -209,10 +209,19 @@ EOT;
                               </div>
                               <a data-toggle="modal" href="#deleteConfromModal" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete</a>
                     <button type="submit" class="btn btn-primary" name="update" >Update Details</button>
-                    <?php endif; ?>
                   </div>
                 </fieldset>
               </form>
+              <?php else : ?>
+                   <fieldset>
+                     <legend>Edit User</legend>
+                     <div class="control-group">
+                    <form class="well form-search" action="listusers.php" method='GET'>
+                        <input type="text" name="search" class="input-xlarge search-query">
+                        <button type="submit" class="btn">Search</button>
+                    </form>
+                    </div>
+              <?php endif; ?>
             </div><!--/span-->
           </div><!--/row-->
         </div><!--/span-->

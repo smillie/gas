@@ -6,11 +6,24 @@ if (!isUserInGroup($con, $user, "gsag")) {
 
 $pageTitle = ' - All Users';
 
-$search = ldap_search($con, $dn, "(objectclass=posixaccount)");
+if (isset($_GET['search'])) {
+    $pattern = $_GET['search'];
+    $searchPattern = "(&(objectclass=posixaccount)(|(uid=*$pattern*)(cn=*$pattern*)(mail=*$pattern*)(studentnumber=*$pattern*)))";
+    
+} else {
+    $searchPattern = "(objectclass=posixaccount)";
+}    
+
+$search = ldap_search($con, $dn, $searchPattern);
 ldap_sort($con, $search, 'uid');
 $results = ldap_get_entries($con, $search);
 
-
+if (ldap_count_entries($con, $search) == 1){
+    $ruser = $results[0]['uid'][0];
+    header( 'Location: edit.php?user='.$ruser );
+} else if (ldap_count_entries($con, $search) == 0) {
+    $error = "No results for '$pattern'";
+}
 
 ?>
 <?php require 'header.php'; ?>
@@ -30,6 +43,16 @@ $results = ldap_get_entries($con, $search);
                   </tr>
                 </thead>
                 <tbody>
+                <?php if (isset($error)) : ?>
+                  <div class="alert alert-error">
+                    <?php echo "$error"; ?>
+                  </div>
+                <?php elseif (isset($success)) : ?>
+                  <div class="alert alert-success">
+                    <?php echo "$success"; ?>
+                  </div>
+                <?php endif; ?>
+
                 <?php foreach (array_slice($results, 1) as $user) : ?>
                     <tr>
                     <td><a href="edit.php?user=<?php echo $user['uid'][0]?>" class="btn btn-mini">Edit</a></td>
