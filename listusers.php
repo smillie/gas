@@ -9,7 +9,7 @@ $pageTitle = ' - All Users';
 if (isset($_GET['search'])) {
     $pattern = $_GET['search'];
     $searchPattern = "(&(objectclass=posixaccount)(|(uid=*$pattern*)(cn=*$pattern*)(mail=*$pattern*)(studentnumber=*$pattern*)))";
-    
+    $pageTitle = " - Search for '$pattern'";
 } else {
     $searchPattern = "(objectclass=posixaccount)";
 }    

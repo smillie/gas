@@ -49,6 +49,12 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="index.php">GeekSoc Account System</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="index.php">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
             <?php if(isset($_SESSION['user'])) : ?>
                 <div class="btn-group pull-right">
                   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -62,12 +68,11 @@
                   </ul>
                 </div>
             <?php endif; ?>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="index.php">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
+            <?php if ( isset($_SESSION['user']) && (isUserInGroup($con, $user, "gsag")) ) : ?>
+                <form class="navbar-search pull-right" action="listusers.php" method='GET'>
+                    <input type="text" name="search" class="search-query span2" placeholder="Search Users">
+                </form>
+            <?php endif; ?>
           </div><!--/.nav-collapse -->
         </div>
       </div>
