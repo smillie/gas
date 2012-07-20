@@ -27,6 +27,24 @@
         }
     }
 
+    function getAllGroups($con) {
+        $group_search = ldap_search($con, "ou=groups,dc=geeksoc,dc=org", "(objectClass=posixGroup)");
+        ldap_sort($con, $group_search, 'cn');
+        $results = ldap_get_entries($con, $group_search);
+
+        return array_slice($results, 1);
+    }
+
+    function getGroupsForUser($con, $user) {
+        $groups = array();
+        foreach (getAllGroups($con) as $groupEntry) {
+            if (isUserInGroup($con, $user, $groupEntry['cn'][0])) {
+                $groups[] = $groupEntry['cn'][0];
+            }
+        }
+        return $groups;
+    }
+
     function getStatus($expiry, $paid) {
         $day = intval(time()/(60*60*24));
         $i = (int)$expiry;
@@ -39,11 +57,11 @@
         } 
         if ($i <= ($day+60)) {
           $status = "Expiring";
-          $stat_icon = "icon-exclamation-sign";
+          $stat_icon = "icon-time";
         }
         if ($i <= $day) {
           $status = "Expired";
-          $stat_icon = "icon-exclamation-sign";
+          $stat_icon = "icon-time";
         }
         if ($i == 1) {
           $status = "Administratively Disabled";

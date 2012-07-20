@@ -43,6 +43,12 @@ EOT;
             $success = "User $u has been deleted.";
         }
 
+        $groups = getGroupsForUser($con, $u);
+        foreach ($groups as $g) {
+            $attr['memberUid'] = $u;
+            ldap_mod_del($con, "cn=" . $g . ",ou=groups,dc=geeksoc,dc=org", $attr);
+        }
+
         $ircmessage = "#gsag Account deleted: $u (by $user)";
         $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         socket_connect($sock, "irc.geeksoc.org", 5050);

@@ -4,7 +4,6 @@
     $pageTitle = " - Change Password";    
 
   if (isset($_POST['oldpw'])) {
-    ldap_unbind();
     if (ldap_bind($con, $userdn, $_POST['oldpw'])===true) {
       if ($_POST['confirmpw'] == $_POST['newpw']) {
         mt_srand((double)microtime()*1000000);
@@ -14,7 +13,7 @@
         $entry['userpassword']=$password;
         $_SESSION['password']=$_POST['newpw'];
         ldap_modify($con,$userdn,$entry);
-        $success = "Passwords updated successfully.";
+        $success = "Password updated successfully.";
       } else {
         $error = "<strong>Error:</strong> Passwords do not match.";
       }
