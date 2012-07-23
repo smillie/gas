@@ -86,6 +86,8 @@ EOT;
             $entry['loginshell']="/bin/zsh";
             break;
         }
+        $edate = strtotime($_POST['expiry']);
+        $entry['shadowexpire'] = intval($edate/(60*60*24));
         if ($result[0]['haspaid'][0] != NULL ) {
             switch ($_POST['hasPaid']) {
                 case "yes":
@@ -167,20 +169,31 @@ EOT;
                           <option <?php echo($shell == "/bin/zsh"?' selected="selected"':null) ?>>/bin/zsh</option>
                         </select>
                       </div>
-                    </div>              
-                  <div class="control-group">
-                    <label class="control-label" for="status">Account Status</label>
-                    <div class="controls">
-                        <span class="input-xlarge uneditable-input"><?php echo getStatus($result[0]['shadowexpire'][0], $result[0]['haspaid'][0]); ?></span>
-                      
                     </div>
+                    <div class="control-group">
+                        <label class="control-label">Groups</label>
+                        <div class="controls">
+                            <span class="uneditable-input input-xlarge">
+                                <?php foreach(getGroupsForUser($con,$u) as $g){ echo "<a href='editgroup.php?group=$g'>$g</a> "; } ?>
+                            </span>
+                        </div>
+                    </div>
+              
+                    <div class="control-group">
+                        <label class="control-label" for="status">Account Status</label>
+                        <div class="controls">
+                            <span class="input-xlarge uneditable-input"><?php echo getStatus($result[0]['shadowexpire'][0], $result[0]['haspaid'][0]); ?></span>
+                        </div>
                   </div>
                   <div class="control-group">
-                    <label class="control-label">Groups</label>
+                    <label class="control-label">Expiry</label>
                     <div class="controls">
-                    <span class="uneditable-input input-xlarge">
-                        <?php foreach(getGroupsForUser($con,$u) as $g){ echo "<a href='editgroup.php?group=$g'>$g</a> "; } ?>
-                    </span>
+                      <?php 
+                            date_default_timezone_set('Europe/London');
+                            $expiry =  intval($result[0]['shadowexpire'][0])*(60*60*24);
+                            $edate = date("Y-m-d", $expiry);
+                        ?>
+                        <input type="text" class="input-xlarge" name="expiry" id="expiry" value="<?php echo $edate; ?>">
                     </div>
                   </div>
                   <div class="control-group">
