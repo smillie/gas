@@ -176,6 +176,14 @@ EOT;
                     </div>
                   </div>
                   <div class="control-group">
+                    <label class="control-label">Groups</label>
+                    <div class="controls">
+                    <span class="uneditable-input input-xlarge">
+                        <?php foreach(getGroupsForUser($con,$u) as $g){ echo "<a href='editgroup.php?group=$g'>$g</a> "; } ?>
+                    </span>
+                    </div>
+                  </div>
+                  <div class="control-group">
                     <label class="control-label">Paid?</label>
                     <div class="controls">
                       <label class="radio inline">

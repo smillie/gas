@@ -1,43 +1,42 @@
 <?php require 'ldapconnect.php'; ?>
 <?php
-if (!isUserInGroup($con, $user, "gsag")) {
-    header( 'Location: index.php' );
-}
-
-$pageTitle = ' - Groups';
-
-if (isset($_POST['newgroup']) && strlen($_POST['newgroup']) > 2) {
-    $gname = $_POST['newgroup'];
-
-    $gidno = 10000;
-    foreach(getAllGroups($con) as $g) {
-        if ($g['gidnumber'][0] > $gidno) 
-            $gidno = $g['gidnumber'][0];
+    if (!isUserInGroup($con, $user, "gsag")) {
+        header( 'Location: index.php' );
     }
-    $gidno += 1;
+
+    $pageTitle = ' - Groups';
+
+    if (isset($_POST['newgroup']) && strlen($_POST['newgroup']) > 2) {
+        $gname = $_POST['newgroup'];
+
+        $gidno = 10000;
+        foreach(getAllGroups($con) as $g) {
+            if ($g['gidnumber'][0] > $gidno) 
+                $gidno = $g['gidnumber'][0];
+        }
+        $gidno += 1;
 
 
-    $newgroup['objectclass'] = "posixGroup";
-    $newgroup['cn'] = $gname;
-    $newgroup['userpassword'] = "{crypt}x";
-    $newgroup['gidnumber'] = $gidno;
+        $newgroup['objectclass'] = "posixGroup";
+        $newgroup['cn'] = $gname;
+        $newgroup['userpassword'] = "{crypt}x";
+        $newgroup['gidnumber'] = $gidno;
 
-    ldap_add($con, "cn=$gname,ou=groups,dc=geeksoc,dc=org", $newgroup);
-    if (ldap_error($con) != "Success") {
-        $error = ldap_error($con);
+        ldap_add($con, "cn=$gname,ou=groups,dc=geeksoc,dc=org", $newgroup);
+        if (ldap_error($con) != "Success") {
+            $error = ldap_error($con);
+        }
+        $success = "Created group '$gname'.";
+
+    } elseif (isset($_GET['delete'])) {
+        $gname = $_GET['delete'];
+        ldap_delete($con, "cn=$gname,ou=groups,dc=geeksoc,dc=org");
+        if (ldap_error($con) != "Success") {
+            $error = ldap_error($con);
+        }
+        $success = "Deleted group '$gname'.";
+
     }
-    $success = "Created group '$gname'.";
-
-} elseif (isset($_GET['delete'])) {
-    $gname = $_GET['delete'];
-    ldap_delete($con, "cn=$gname,ou=groups,dc=geeksoc,dc=org");
-    if (ldap_error($con) != "Success") {
-        $error = ldap_error($con);
-    }
-    $success = "Deleted group '$gname'.";
-
-}
-
 ?>
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
@@ -67,7 +66,7 @@ if (isset($_POST['newgroup']) && strlen($_POST['newgroup']) > 2) {
 
                 <?php foreach (getAllGroups($con) as $group) : ?>
                     <tr>
-                        <td><a href="groups.php?edit=<?php echo $group['cn'][0]?>" class="btn btn-mini">Edit</a></td>
+                        <td><a href="editgroup.php?group=<?php echo $group['cn'][0]?>" class="btn btn-mini">Edit</a></td>
                         <td><?php echo $group['cn'][0]; ?></td>
                         <td><?php echo $group['gidnumber'][0]; ?></td>
                         <td><?php echo count(array_slice($group['memberuid'], 1)); ?></td>

@@ -13,7 +13,7 @@
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'adduser.php'))? 'class="active"':null) ?>><a href="adduser.php"><i class="icon-plus"></i> Add User</a></li>
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'edit.php'))? 'class="active"':null) ?>><a href="edit.php"><i class="icon-pencil"></i> Edit User</a></li>
           <li <?php echo((strpos($_SERVER['PHP_SELF'], 'listusers.php'))? 'class="active"':null) ?>><a href="listusers.php"><i class="icon-th-list"></i> List Users</a></li>
-          <li <?php echo((strpos($_SERVER['PHP_SELF'], 'groups.php'))? 'class="active"':null) ?>><a href="groups.php"><i class=" icon-tags"></i> Groups</a></li>
+          <li <?php echo(((strpos($_SERVER['PHP_SELF'], 'editgroup.php'))||(strpos($_SERVER['PHP_SELF'], 'groups.php')))? 'class="active"':null) ?>><a href="groups.php"><i class=" icon-tags"></i> Groups</a></li>
           <?php endif; ?>
         </ul>
       </div><!--/.well -->
