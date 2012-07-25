@@ -97,7 +97,7 @@ Have fun, but please be responsible and abide with the terms of service.
 GeekSoc
 http://www.geeksoc.org/
 EOT;
-            // mail($email, "[GeekSoc] Your account has been created", $userEmail, "From: support@geeksoc.org");
+            mail($email, "[GeekSoc] Your account has been created", $userEmail, "From: support@geeksoc.org");
 
         //email creation notice to gsag
             $adminEmail = <<<EOT
@@ -106,14 +106,14 @@ An account has been created by $user for $first $last:
 Username: $uid
 Email: $email
 EOT;
-            // mail("gsag@geeksoc.org", "[GeekSoc] New account created", $adminEmail, "From: support@geeksoc.org");
+            mail("gsag@geeksoc.org", "[GeekSoc] New account created", $adminEmail, "From: support@geeksoc.org");
 
         //irc creation notice (#gsag)
-            // $message = "#gsag Account created for $first $last: Username: $uid, Email: $email (by $user)";
-            // $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            // socket_connect($sock, "irc.geeksoc.org", 5050);
-            // socket_write($sock, $message, strlen($message));
-            // socket_close($sock);
+            $message = "#gsag Account created for $first $last: Username: $uid, Email: $email (by $user)";
+            $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+            socket_connect($sock, "irc.geeksoc.org", 5050);
+            socket_write($sock, $message, strlen($message));
+            socket_close($sock);
 
 
             $success = "Created user '$uid' with password '$pass'.";
