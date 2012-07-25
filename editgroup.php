@@ -65,7 +65,7 @@
                             <tr>
                             <td><a href="editgroup.php?remove=<?php echo $member?>&group=<?php echo $gname ?>" class="btn btn-mini btn-danger">Remove</a>
 </td>
-                                <td><?php echo $member."\n"; ?></td>
+                                <td><a href="edit.php?user=<?php echo $member; ?>"><?php echo $member; ?></a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
