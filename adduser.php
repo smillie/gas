@@ -97,7 +97,7 @@ Have fun, but please be responsible and abide with the terms of service.
 GeekSoc
 http://www.geeksoc.org/
 EOT;
-            mail($email, "[GeekSoc] Your account has been created", $userEmail, "From: support@geeksoc.org");
+            // mail($email, "[GeekSoc] Your account has been created", $userEmail, "From: support@geeksoc.org");
 
         //email creation notice to gsag
             $adminEmail = <<<EOT
@@ -106,14 +106,14 @@ An account has been created by $user for $first $last:
 Username: $uid
 Email: $email
 EOT;
-            mail("gsag@geeksoc.org", "[GeekSoc] New account created", $adminEmail, "From: support@geeksoc.org");
+            // mail("gsag@geeksoc.org", "[GeekSoc] New account created", $adminEmail, "From: support@geeksoc.org");
 
         //irc creation notice (#gsag)
-            $message = "#gsag Account created for $first $last: Username: $uid, Email: $email (by $user)";
-            $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            socket_connect($sock, "irc.geeksoc.org", 5050);
-            socket_write($sock, $message, strlen($message));
-            socket_close($sock);
+            // $message = "#gsag Account created for $first $last: Username: $uid, Email: $email (by $user)";
+            // $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+            // socket_connect($sock, "irc.geeksoc.org", 5050);
+            // socket_write($sock, $message, strlen($message));
+            // socket_close($sock);
 
 
             $success = "Created user '$uid' with password '$pass'.";
@@ -126,7 +126,7 @@ EOT;
         <div class="span10">
           <div class="row-fluid">
             <div class="span4">
-              <form class="form-horizontal" action="adduser.php" method="post">
+              <form class="form-horizontal" id="form" action="adduser.php" method="post">
                 <fieldset>
                   <legend>Add User</legend>
                   <div class="control-group">
@@ -141,31 +141,31 @@ EOT;
                     <?php endif; ?>
                     <label class="control-label" for="firstname">First Name</label>
                     <div class="controls">
-                      <input type="text" class="input-xlarge" name="firstname" id="firstname">
+                      <input type="text" class="input-xlarge required" name="firstname" id="firstname">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="lastname">Last Name</label>
                     <div class="controls">
-                      <input type="text" class="input-xlarge" name="lastname" id="lastname">
+                      <input type="text" class="input-xlarge required" name="lastname" id="lastname">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="uid">Account Name</label>
                     <div class="controls">
-                      <input type="text" class="input-xlarge" name="uid" id="uid">
+                      <input type="text" class="input-xlarge required" name="uid" id="uid" minlength="3">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="studentNumber">Student Number</label>
                     <div class="controls">
-                    <input type="text" class="input-xlarge" name="studentnumber" id="studentnumber" >
+                    <input type="text" class="input-xlarge digits" name="studentnumber" id="studentnumber" >
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="email">Email</label>
                     <div class="controls">
-                    <input type="text" class="input-xlarge" name="email" id="email" >
+                    <input type="text" class="input-xlarge required email" name="email" id="email" >
                     </div>
                   </div>
                   <div class="form-actions">

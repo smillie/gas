@@ -35,7 +35,7 @@
         <div class="span10">
           <div class="row-fluid">
             <div class="span4">
-              <form class="form-horizontal" action="details.php" method="post">
+              <form class="form-horizontal" action="details.php" method="post" id="form">
                 <fieldset>
                   <legend>Account Details</legend>
                     <?php if (isset($success)) : ?>
@@ -54,25 +54,25 @@
                   <div class="control-group">
                     <label class="control-label" for="cn">Full Name</label>
                     <div class="controls">
-                      <input type="text" class="input-xlarge" name="cn" id="cn" value="<?php echo $user_get[0]["cn"][0]; ?>">
+                      <input type="text" class="input-xlarge required" name="cn" id="cn" value="<?php echo $user_get[0]["cn"][0]; ?>">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="studentNumber">Student Number</label>
                     <div class="controls">
-                    <input type="text" class="input-xlarge" name="studentnumber" id="studentnumber" value="<?php echo $user_get[0]["studentnumber"][0]; ?>">
+                    <input type="text" class="input-xlarge digits" name="studentnumber" id="studentnumber" value="<?php echo $user_get[0]["studentnumber"][0]; ?>">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="email">Email</label>
                     <div class="controls">
-                    <input type="text" class="input-xlarge" name="email" id="email" value="<?php echo $user_get[0]["mail"][0]; ?>">
+                    <input type="text" class="input-xlarge required email" name="email" id="email" value="<?php echo $user_get[0]["mail"][0]; ?>">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="loginShell">Login Shell</label>
                       <div class="controls">
-                        <select id="loginShell" name="loginShell">
+                        <select id="loginShell" name="loginShell" class="required">
                           <?php $shell=$user_get[0]["loginshell"][0]?>
                           <option <?php echo($shell == "/bin/bash"?' selected="selected"':null) ?>>/bin/bash</option>
                           <option <?php echo($shell == "/bin/tcsh"?' selected="selected"':null) ?>>/bin/tcsh</option>

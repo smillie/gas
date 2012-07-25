@@ -28,7 +28,7 @@
         <div class="span10">
           <div class="row-fluid">
             <div class="span4">
-              <form class="form-horizontal" action="password.php" method="post">
+              <form id="form" class="form-horizontal" action="password.php" method="post">
                 <fieldset>
                   <legend>Change Password</legend>
                   <div class="control-group">
@@ -43,19 +43,19 @@
                     <?php endif; ?>
                     <label class="control-label" for="oldpw">Old Password</label>
                     <div class="controls">
-                      <input type="password" class="input-xlarge" name="oldpw" id="oldpw">
+                      <input type="password" class="input-xlarge required" name="oldpw" id="oldpw">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="newpw">New Password</label>
                     <div class="controls">
-                    <input type="password" class="input-xlarge" name="newpw" id="newpw">
+                    <input type="password" class="input-xlarge required" name="newpw" id="newpw" minlength="8">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="confirmpw">Confirm Password</label>
                     <div class="controls">
-                    <input type="password" class="input-xlarge" name="confirmpw" id="confirmpw">
+                    <input type="password" class="input-xlarge required" name="confirmpw" id="confirmpw">
                     </div>
                   </div>
                   <div class="form-actions">

@@ -123,7 +123,7 @@ EOT;
           <div class="row-fluid">
             <div class="span4">
             <?php if (isset($_GET['user']) && !isset($_POST['delete'])) : ?>
-              <form class="form-horizontal" action="edit.php?user=<?php echo $u; ?>" method="post">
+              <form id="form" class="form-horizontal" action="edit.php?user=<?php echo $u; ?>" method="post">
                 <fieldset>
                   <legend>Edit User</legend>
                   <div class="control-group">
@@ -144,19 +144,19 @@ EOT;
                   <div class="control-group">
                     <label class="control-label" for="cn">Full Name</label>
                     <div class="controls">
-                      <input type="text" class="input-xlarge" name="cn" id="cn" value="<?php echo $result[0]["cn"][0]; ?>">
+                      <input type="text" class="input-xlarge required" name="cn" id="cn" value="<?php echo $result[0]["cn"][0]; ?>">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="studentNumber">Student Number</label>
                     <div class="controls">
-                    <input type="text" class="input-xlarge" name="studentnumber" id="studentnumber" value="<?php echo $result[0]["studentnumber"][0]; ?>">
+                    <input type="text" class="input-xlarge digits" name="studentnumber" id="studentnumber" value="<?php echo $result[0]["studentnumber"][0]; ?>">
                     </div>
                   </div>
                   <div class="control-group">
                     <label class="control-label" for="email">Email</label>
                     <div class="controls">
-                    <input type="text" class="input-xlarge" name="email" id="email" value="<?php echo $result[0]["mail"][0]; ?>">
+                    <input type="text" class="input-xlarge required email" name="email" id="email" value="<?php echo $result[0]["mail"][0]; ?>">
                     </div>
                   </div>
                   <div class="control-group">
@@ -189,11 +189,10 @@ EOT;
                     <label class="control-label">Expiry</label>
                     <div class="controls">
                       <?php 
-                            date_default_timezone_set('Europe/London');
                             $expiry =  intval($result[0]['shadowexpire'][0])*(60*60*24);
                             $edate = date("Y-m-d", $expiry);
                         ?>
-                        <input type="text" class="input-xlarge" name="expiry" id="expiry" value="<?php echo $edate; ?>">
+                        <input type="text" class="input-xlarge required dateISO" name="expiry" id="expiry" value="<?php echo $edate; ?>">
                     </div>
                   </div>
                   <div class="control-group">
