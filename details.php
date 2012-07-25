@@ -33,8 +33,8 @@
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
         <div class="span10">
-          <div class="row-fluid">
-            <div class="span4">
+          <div class="row">
+            <div class="span5">
               <form class="form-horizontal" action="details.php" method="post" id="form">
                 <fieldset>
                   <legend>Account Details</legend>
@@ -92,6 +92,16 @@
                 </fieldset>
               </form>
             </div><!--/span-->
+
+						<div class="span4 offset1">
+						<h3>Shell Access</h3>
+						<p>The shell service can be accessed over SSH at <code>shell.geeksoc.org</code></p>
+						<h3>IRC Access</h3>
+						<p>Our IRC chat server is available at <code>irc.geeksoc.org</code> on port 6667</p>
+						<h3>Email Account</h3>
+						Email accounts are handled separately
+						<p><button class="btn">Request Account</button></p>
+						</div>
           </div><!--/row-->
         </div><!--/span-->
 

@@ -44,7 +44,6 @@
 <?php require 'menu.php'; ?>
 
     <div class="span5">
-        <div class="row-fluid">
                 <?php if (isset($error)) : ?>
                   <div class="alert alert-error">
                     <?php echo "$error"; ?>
@@ -76,7 +75,6 @@
                     <button type="submit" class="btn">Add Member</button>
                 </form>
 
-        </div>
     </div>
 <?php require 'footer.php'; ?>
 

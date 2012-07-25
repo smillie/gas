@@ -41,8 +41,7 @@
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
 
-    <div class="span5">
-        <div class="row-fluid">
+    <div class="span6">
             <table class="table ">
                 <thead>
                   <tr>
@@ -95,6 +94,5 @@
                     <input type="text" class="input-xlarge" placeholder="Group Name" name="newgroup">
                     <button type="submit" class="btn">Add Group</button>
                 </form>
-        </div>
     </div>
 <?php require 'footer.php'; ?>

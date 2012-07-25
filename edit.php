@@ -120,8 +120,8 @@ EOT;
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
         <div class="span10">
-          <div class="row-fluid">
-            <div class="span4">
+          <div class="row">
+            <div class="span5">
             <?php if (isset($_GET['user']) && !isset($_POST['delete'])) : ?>
               <form id="form" class="form-horizontal" action="edit.php?user=<?php echo $u; ?>" method="post">
                 <fieldset>

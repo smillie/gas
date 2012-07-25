@@ -124,8 +124,8 @@ EOT;
 <?php require 'menu.php'; ?>
 
         <div class="span10">
-          <div class="row-fluid">
-            <div class="span4">
+          <div class="row">
+            <div class="span5">
               <form class="form-horizontal" id="form" action="adduser.php" method="post">
                 <fieldset>
                   <legend>Add User</legend>

@@ -24,8 +24,8 @@
 <?php require 'menu.php'; ?>
 
         <div class="span10">
-          <div class="row-fluid">
-            <div class="span4">
+          <div class="row">
+            <div class="span5">
               <form enctype="multipart/form-data" class="form-horizontal" action="sshkeys.php" method="post">
                 <fieldset>
                   <legend>SSH Keys</legend>
@@ -60,6 +60,12 @@
                 </fieldset>
               </form>
             </div><!--/span-->
+						<div class="span4 offset1">
+						<h3>Note</h3>
+						<p>SSH keys provide a method of securely logging into a remote computer without sending a password over the network.</code></p>
+						<p>Set up info here...</p>
+
+						</div>
           </div><!--/row-->
         </div><!--/span-->
 

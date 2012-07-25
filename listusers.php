@@ -29,8 +29,8 @@ if (ldap_count_entries($con, $search) == 1){
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
 
-    <div class="span7">
-        <div class="row-fluid">
+    <div class="span10">
+
             <table class="table ">
                 <thead>
                   <tr>
@@ -64,7 +64,6 @@ if (ldap_count_entries($con, $search) == 1){
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
-              </table>    
-        </div>
+              </table> 
     </div>
 <?php require 'footer.php'; ?>

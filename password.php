@@ -26,8 +26,8 @@
 <?php require 'menu.php'; ?>
 
         <div class="span10">
-          <div class="row-fluid">
-            <div class="span4">
+          <div class="row">
+            <div class="span5">
               <form id="form" class="form-horizontal" action="password.php" method="post">
                 <fieldset>
                   <legend>Change Password</legend>
@@ -64,6 +64,11 @@
                 </fieldset>
               </form>
             </div><!--/span-->
+						<div class="span4 offset1">
+						<h3>Note</h3>
+						<p>This password will be used for all GeekSoc services. Please choose something secure.</code></p>
+
+						</div>
           </div><!--/row-->
         </div><!--/span-->
 
