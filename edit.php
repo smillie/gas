@@ -87,7 +87,7 @@ EOT;
             break;
         }
         $edate = strtotime($_POST['expiry']);
-        $entry['shadowexpire'] = intval($edate/(60*60*24));
+        $entry['shadowexpire'] = intval($edate/(60*60*24))+1;
         if ($result[0]['haspaid'][0] != NULL ) {
             switch ($_POST['hasPaid']) {
                 case "yes":

@@ -94,13 +94,20 @@
             </div><!--/span-->
 
 						<div class="span4 offset1">
-						<h3>Shell Access</h3>
-						<p>The shell service can be accessed over SSH at <code>shell.geeksoc.org</code></p>
-						<h3>IRC Access</h3>
-						<p>Our IRC chat server is available at <code>irc.geeksoc.org</code> on port 6667</p>
-						<h3>Email Account</h3>
-						Email accounts are handled separately
-						<p><button class="btn">Request Account</button></p>
+							<h3>Shell Access</h3>
+							<p>The shell service can be accessed over SSH at <code>shell.geeksoc.org</code>.</p>
+							<p>On Windows the program <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a> can be used to login to the SSH server, while Mac and Linux users will already have SSH installed and may connect using the 'ssh' command from a terminal.</p>
+							
+							<h3>IRC (Chat)</h3>
+							<p>Our public IRC server can be reached at <code>irc.geeksoc.org</code>. The official channel is <code>#geeksoc</code>. The recommended way of accessing IRC is setting up a persistent connection on Shell using screen and irssi, see <a href="http://quadpoint.org/articles/irssi">here</a> for details on how to set this up.</p>
+							
+							<h3>Web Hosting</h3>
+							Anything in your <code>public_html</code> directory will be available at <a href="http://geeksoc.org/~<?php echo $user; ?>">http://geeksoc.org/~<?php echo $user; ?></a>.
+							
+							<h3>Email</h3>
+							Our email service is run by Google and may be accessed at <a href="http://mail.geeksoc.org/">mail.geeksoc.org</a> if you have an account.
+							<p><button class="btn">Request Account</button></p>
+							
 						</div>
           </div><!--/row-->
         </div><!--/span-->

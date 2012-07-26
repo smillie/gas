@@ -81,14 +81,14 @@ if (!isUserInGroup($con, $user, "gsag")) {
             $userEmail = <<<EOT
 Welcome to GeekSoc $first!
 
-You may find your new account details below, but please change your password with the 'passwd' command immediately upon first login.
+You may find your new account details below, but please change your password at http://accounts.geeksoc.org/ as soon as possible.
 
 Username: $uid 
 Password: $pass
 
 You may login to the shell server via SSH at shell.geeksoc.org on port 22. IRC may be found at irc.geeksoc.org on port 6667 - #geeksoc is the official channel.
 
-On Windows the program 'putty' may be used to login to the SSH server, while Mac/Linux users will already have SSH installed and may connect using the 'ssh' command from a terminal.
+On Windows the program PuTTY may be used to login to the SSH server, while Mac/Linux users will already have SSH installed and may connect using the 'ssh' command from a terminal.
 
 The recommended way of accessing IRC is setting up a persistent connection on Shell using screen and irssi, see http://quadpoint.org/articles/irssi for details on how to set this up.
 
