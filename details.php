@@ -58,7 +58,7 @@
                     </div>
                   </div>
                   <div class="control-group">
-                    <label class="control-label" for="studentNumber">Student Number</label>
+                    <label class="control-label" for="studentnumber">Student Number</label>
                     <div class="controls">
                     <input type="text" class="input-xlarge digits" name="studentnumber" id="studentnumber" value="<?php echo $user_get[0]["studentnumber"][0]; ?>">
                     </div>
@@ -102,11 +102,11 @@
 							<p>Our public IRC server can be reached at <code>irc.geeksoc.org</code>. The official channel is <code>#geeksoc</code>. The recommended way of accessing IRC is setting up a persistent connection on Shell using screen and irssi, see <a href="http://quadpoint.org/articles/irssi">here</a> for details on how to set this up.</p>
 							
 							<h3>Web Hosting</h3>
-							Anything in your <code>public_html</code> directory will be available at <a href="http://geeksoc.org/~<?php echo $user; ?>">http://geeksoc.org/~<?php echo $user; ?></a>.
+							<p>Anything in your <code>public_html</code> directory will be available at <a href="http://geeksoc.org/~<?php echo $user; ?>">http://geeksoc.org/~<?php echo $user; ?></a>.</p>
 							
 							<h3>Email</h3>
 							Our email service is run by Google and may be accessed at <a href="http://mail.geeksoc.org/">mail.geeksoc.org</a> if you have an account.
-							<p><button class="btn">Request Account</button></p>
+							<p>If you would like an @geeksoc.org account then please email <a href="mailto:support@geeksoc.org">support@geeksoc.org</a>.</p>
 							
 						</div>
           </div><!--/row-->
