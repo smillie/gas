@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="">
-         <a href="register.php" class="btn">Create Account</a>
+         <a href="register.php" class="btn">Join GeekSoc</a>
         <button type="submit" name="login" class="btn btn-primary">Login</button>
       </div>
     </fieldset>
