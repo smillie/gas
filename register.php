@@ -9,9 +9,35 @@
   if (isset($_POST['register'])) {
       $first = $_POST['firstname'];
       $last = $_POST['lastname'];
-      $stuno = $_POST['studentNumber'];
-      $email = $_POST['email'];
+      $stuno = $_POST['studentnumber'];
       $uid = substr($first, 0, 1).$last;
+      $email = $_POST['email'];
+      
+      $mysqli = new mysqli($conf['db_host'], $conf['db_user'], $conf['db_pass'], $conf['db_name']);
+      if (mysqli_connect_errno()) {
+          printf("Connect failed: %s\n", mysqli_connect_error());
+          exit();
+      }
+      
+      /* Create the prepared statement */
+      if ($stmt = $mysqli->prepare("INSERT INTO newusers (firstname, lastname, username, studentnumber, email) values (?, ?, ?, ?, ?)")) {
+
+              /* Bind our params */
+              $stmt->bind_param('sssis', $first, $last, $uid, $stuno, $email);
+
+
+              /* Execute the prepared Statement */
+              $stmt->execute();
+
+              /* Echo results */
+              // echo "Inserted {$first} {$last} $uid $stuno, into database\n";
+
+              /* Close the statement */
+              $stmt->close(); 
+      }
+      else {
+              /* Error */
+      }
       
       
       ircNotify("$first $last has joined GeekSoc and is awaiting account activation.");
