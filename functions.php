@@ -1,4 +1,5 @@
 <?php
+
     function generatePassword ($length = 8) {
         $password = "";
         $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
@@ -71,20 +72,23 @@
     }
 
     function ircNotify($message) {
-        $ircNotifications = TRUE;
-        if ($ircNotifications) {
-            $ircmessage = "#gsag " . $message;
+        global $conf;
+        
+        if ($conf['ircNotifications']) {
+            $ircmessage = $conf['ircChannel']." $message";
             $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-            socket_connect($sock, 'irc.geeksoc.org', '5050');
+            socket_connect($sock, $conf['ircServer'], $conf['ircBotPort']);
             socket_write($sock, $ircmessage, strlen($ircmessage));
             socket_close($sock);
         }
     }
     
     function mailNotify($to, $subject, $message) {
-        $mailNotificaions = TRUE;
-        if (mailNotificaions) {
-            mail($to, $subject, $message, "From: support@geeksoc.org");
+        global $conf;
+        $from = $conf['mailFrom'];
+        
+        if ($conf['mailNotifications']) {
+            mail($to, $subject, $message, "From: $from");
         }
     }
 

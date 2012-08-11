@@ -1,4 +1,7 @@
-<?php require 'functions.php'; ?>
+<?php 
+require 'config.php';
+require 'functions.php'; 
+?>
 <?php 
   session_start();
   session_regenerate_id();
