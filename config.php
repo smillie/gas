@@ -11,7 +11,7 @@ $conf['ircServer'] = 'irc.geeksoc.org';
 $conf['ircChannel'] = '#gsag';
 $conf['ircBotPort'] = '5050';
        
-$conf['mailNotifications'] = TRUE;
+$conf['mailNotifications'] = FALSE;
 $conf['mailFrom'] = 'support@geeksoc.org'
 
 ?>
