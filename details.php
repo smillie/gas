@@ -105,7 +105,7 @@
 							<p>Anything in your <code>public_html</code> directory will be available at <a href="http://geeksoc.org/~<?php echo $user; ?>">http://geeksoc.org/~<?php echo $user; ?></a>.</p>
 							
 							<h3>Email</h3>
-							Our email service is run by Google and may be accessed at <a href="http://mail.geeksoc.org/">mail.geeksoc.org</a> if you have an account.
+							<p>Our email service is run by Google and may be accessed at <a href="http://mail.geeksoc.org/">mail.geeksoc.org</a> if you have an account.</p>
 							<p>If you would like an @geeksoc.org account then please email <a href="mailto:support@geeksoc.org">support@geeksoc.org</a>.</p>
 							
 						</div>
