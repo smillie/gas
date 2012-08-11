@@ -70,5 +70,22 @@
         return "<i class='$stat_icon'></i> $status";
     }
 
+    function ircNotify($message) {
+        $ircNotifications = TRUE;
+        if ($ircNotifications) {
+            $ircmessage = "#gsag " . $message;
+            $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+            socket_connect($sock, 'irc.geeksoc.org', '5050');
+            socket_write($sock, $ircmessage, strlen($ircmessage));
+            socket_close($sock);
+        }
+    }
+    
+    function mailNotify($to, $subject, $message) {
+        $mailNotificaions = TRUE;
+        if (mailNotificaions) {
+            mail($to, $subject, $message, "From: support@geeksoc.org");
+        }
+    }
 
 ?>

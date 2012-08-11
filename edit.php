@@ -25,13 +25,10 @@ New Password: $pass
 GeekSoc
 http://www.geeksoc.org/
 EOT;
-        mail($result[0]['mail'][0], "[GeekSoc] Your password has been reset", $mailmessage, "From: support@geeksoc.org");
 
-        $ircmessage = "#gsag Password reset for $u (by $user)";
-        $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        socket_connect($sock, "irc.geeksoc.org", 5050);
-        socket_write($sock, $ircmessage, strlen($ircmessage));
-        socket_close($sock);
+        mailNotify($result[0]['mail'][0], "[GeekSoc] Your password has been reset", $mailmessage);
+
+        ircNotify("Password reset for $u (by $user)");
 
     }
     if (isset($_POST['delete'])) {
@@ -49,11 +46,7 @@ EOT;
             ldap_mod_del($con, "cn=" . $g . ",ou=groups,dc=geeksoc,dc=org", $attr);
         }
 
-        $ircmessage = "#gsag Account deleted: $u (by $user)";
-        $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        socket_connect($sock, "irc.geeksoc.org", 5050);
-        socket_write($sock, $ircmessage, strlen($ircmessage));
-        socket_close($sock);
+        ircNotify("Account deleted: $u (by $user)");
 
 
     }

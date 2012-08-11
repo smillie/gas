@@ -31,8 +31,8 @@
         </div>
       </div>
       <div class="">
-        <!-- <button type="button" class="btn " disabled="disabled">Create Account</button> -->
-        <button type="submit" class="btn btn-primary">Login</button>
+         <a href="register.php" class="btn">Create Account</a>
+        <button type="submit" name="login" class="btn btn-primary">Login</button>
       </div>
     </fieldset>
   </form>
