@@ -63,7 +63,8 @@
 						<div class="span4 offset1">
 						<h3>Note</h3>
 						<p>SSH keys provide a method of securely logging into a remote computer without sending a password over the network.</code></p>
-						<p>Set up info here...</p>
+						<p>If you are using Linux or a Mac the Arch wiki has a good article about SSH keys and how to generate them <a href="https://wiki.archlinux.org/index.php/SSH_Keys">here</a>.</p>
+						<p>Windows users using PuTTY may find <a href="http://www.howtoforge.com/ssh_key_based_logins_putty">this article</a> helpful.</p>
 
 						</div>
           </div><!--/row-->
