@@ -97,6 +97,8 @@
         global $dn;
         global $user;
         
+        // echo "$uid, $first, $last, $stuno, $email";
+        
         if (ldap_count_entries($con, ldap_search($con, $dn, "(uid=$uid)")) >= 1) {
             $return = "Username '$uid' already exists.";
         } else {

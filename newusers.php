@@ -1,10 +1,10 @@
 <?php require 'ldapconnect.php'; ?>
 <?php
-if (!isUserInGroup($con, $user, "gsag")) {
-    header( 'Location: index.php' );
-}
+    if (!isUserInGroup($con, $user, "gsag")) {
+        header( 'Location: index.php' );
+    }
 
-$pageTitle = ' - New Members';
+    $pageTitle = ' - New Members';
 
     
     $mysqli = new mysqli($conf['db_host'], $conf['db_user'], $conf['db_pass'], $conf['db_name']);
@@ -13,30 +13,70 @@ $pageTitle = ' - New Members';
           exit();
       }
       
+      if ($_GET['action'] == 'create') {
+          
+          $returnMessage = addUser($_GET['uid'], $_GET['first'], $_GET['last'], $_GET['stuno'], $_GET['email']);
+          if (substr($returnMessage, 0, 1) =='S') {
+              $success = substr($returnMessage, 2);
+          } else {
+              $error = $returnMessage;
+          }
+          
+          if ($stmt = $mysqli->prepare("DELETE FROM newusers WHERE id = ?")) {
+          
+                $stmt->bind_param('i', $_GET['id']);
+          
+                $stmt->execute();
+          
+                $stmt->close(); 
+          }
+          else {
+                  /* Error */
+          }
+          
+      } elseif ($_GET['action'] == 'delete') {
+                
+          if ($stmt = $mysqli->prepare("DELETE FROM newusers WHERE id = ?")) {
+          
+                $stmt->bind_param('i', $_GET['id']);
+          
+                $stmt->execute();
+          
+                $stmt->close(); 
+          }
+          else {
+                  /* Error */
+          }
+          
+          $success = "Deleted user from approval queue.";
+          
+      }
+      
       /* Create the prepared statement */
-      if ($stmt = $mysqli->prepare("SELECT * FROM newusers")) {
+        if ($stmt = $mysqli->prepare("SELECT * FROM newusers")) {
 
-              /* Execute the prepared Statement */
-              $stmt->execute();
+                /* Execute the prepared Statement */
+                $stmt->execute();
 
-              $stmt->bind_result($first, $last, $uid, $stuno, $email);
-              while ($stmt->fetch()) {
-                    // printf("%s %s %s %i %s\n", $first, $last, $uid, $stuno, $email);
-                    $u['first'] = $first;
-                    $u['last'] = $last;
-                    $u['uid'] = $uid;
-                    $u['stuno'] = $stuno;
-                    $u['email'] = $email;
-                    
-                    $users[] = $u;
-                }
+                $stmt->bind_result($id, $first, $last, $uid, $stuno, $email);
+                while ($stmt->fetch()) {
+                      // printf("%s %s %s %i %s\n", $first, $last, $uid, $stuno, $email);
+                      $u['id'] = $id;
+                      $u['first'] = $first;
+                      $u['last'] = $last;
+                      $u['uid'] = $uid;
+                      $u['stuno'] = $stuno;
+                      $u['email'] = $email;
 
-              /* Close the statement */
-              $stmt->close(); 
-      }
-      else {
-              /* Error */
-      }
+                      $users[] = $u;
+                  }
+
+                /* Close the statement */
+                $stmt->close(); 
+        }
+        else {
+                /* Error */
+        }
 
 
 ?>
@@ -69,12 +109,12 @@ $pageTitle = ' - New Members';
 
                 <?php foreach ($users as $user) : ?>
                     <tr>
-                    <td><a href="#" class="btn btn-mini">Create</a></td>
+                    <td><a href="newusers.php?action=create&uid=<?php echo $user['uid']."&first=".$user['first']."&last=".$user['last']."&stuno=".$user['stuno']."&email=".$user['email']."&id=".$user['id']; ?>" class="btn btn-mini">Create</a></td>
                         <td><?php echo $user['uid']; ?></td>
                         <td><?php echo $user['first'] . " " . $user['last']; ?></td>
                         <td><?php echo $user['stuno']; ?></td>
                         <td><a href="mailto:<?php echo $user['mail'][0]?>"><?php echo $user['email']; ?></a></td>
-                        <td><a href="#" class="btn btn-danger btn-mini">Delete</a></td>
+                        <td><a href="newusers.php?action=delete&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-mini">Delete</a></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
