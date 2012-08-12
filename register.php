@@ -6,7 +6,7 @@
   
   $pageTitle = "- Join";
   
-  if (isset($_POST['register'])) {
+  if (isset($_POST['register']) && strlen($_POST['firstname'])>2 &&  strlen($_POST['lastname'])>2 ) {
       $first = $_POST['firstname'];
       $last = $_POST['lastname'];
       $stuno = $_POST['studentnumber'];
