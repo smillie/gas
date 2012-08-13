@@ -85,6 +85,16 @@
 
     <div class="span10">
 
+        <?php if (count($users) == 0) : ?>
+            <div class="row">
+                <div class="span5">
+                <feildset>
+                    <legend>Approve New Members</legend>
+                </feildset>
+                <p>There are no new members to approve - get recruiting!</p>
+            </div>
+            </div>
+        <?php else : ?>
             <table class="table ">
                 <thead>
                   <tr>
@@ -106,18 +116,20 @@
                     <?php echo "$success"; ?>
                   </div>
                 <?php endif; ?>
+                
 
-                <?php foreach ($users as $user) : ?>
-                    <tr>
-                    <td><a href="newusers.php?action=create&uid=<?php echo $user['uid']."&first=".$user['first']."&last=".$user['last']."&stuno=".$user['stuno']."&email=".$user['email']."&id=".$user['id']; ?>" class="btn btn-mini">Create</a></td>
-                        <td><?php echo $user['uid']; ?></td>
-                        <td><?php echo $user['first'] . " " . $user['last']; ?></td>
-                        <td><?php echo $user['stuno']; ?></td>
-                        <td><a href="mailto:<?php echo $user['mail'][0]?>"><?php echo $user['email']; ?></a></td>
-                        <td><a href="newusers.php?action=delete&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-mini">Delete</a></td>
-                    </tr>
-                <?php endforeach; ?>
+                    <?php foreach ($users as $user) : ?>
+                        <tr>
+                        <td><a href="newusers.php?action=create&uid=<?php echo $user['uid']."&first=".$user['first']."&last=".$user['last']."&stuno=".$user['stuno']."&email=".$user['email']."&id=".$user['id']; ?>" class="btn btn-mini">Create</a></td>
+                            <td><?php echo $user['uid']; ?></td>
+                            <td><?php echo $user['first'] . " " . $user['last']; ?></td>
+                            <td><?php echo $user['stuno']; ?></td>
+                            <td><a href="mailto:<?php echo $user['email'][0]?>"><?php echo $user['email']; ?></a></td>
+                            <td><a href="newusers.php?action=delete&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-mini">Delete</a></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
-              </table> 
+              </table>
+        <?php endif; ?>
     </div>
 <?php require 'footer.php'; ?>
