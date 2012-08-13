@@ -22,7 +22,7 @@
               $error = $returnMessage;
           }
           
-          if ($stmt = $mysqli->prepare("DELETE FROM newusers WHERE id = ?")) {
+          if (isset($success) && $stmt = $mysqli->prepare("DELETE FROM newusers WHERE id = ?")) {
           
                 $stmt->bind_param('i', $_GET['id']);
           
@@ -88,11 +88,20 @@
         <?php if (count($users) == 0) : ?>
             <div class="row">
                 <div class="span5">
-                <feildset>
-                    <legend>Approve New Members</legend>
-                </feildset>
-                <p>There are no new members to approve - get recruiting!</p>
-            </div>
+                    <?php if (isset($error)) : ?>
+                      <div class="alert alert-error">
+                        <?php echo "$error"; ?>
+                      </div>
+                    <?php elseif (isset($success)) : ?>
+                      <div class="alert alert-success">
+                        <?php echo "$success"; ?>
+                      </div>
+                    <?php endif; ?>
+                    <feildset>
+                        <legend>Approve New Members</legend>
+                    </feildset>
+                    <p>There are no new members to approve - get recruiting!</p>
+                </div>
             </div>
         <?php else : ?>
             <table class="table ">
@@ -124,7 +133,7 @@
                             <td><?php echo $user['uid']; ?></td>
                             <td><?php echo $user['first'] . " " . $user['last']; ?></td>
                             <td><?php echo $user['stuno']; ?></td>
-                            <td><a href="mailto:<?php echo $user['email'][0]?>"><?php echo $user['email']; ?></a></td>
+                            <td><a href="mailto:<?php echo $user['email']; ?>"><?php echo $user['email']; ?></a></td>
                             <td><a href="newusers.php?action=delete&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-mini">Delete</a></td>
                         </tr>
                     <?php endforeach; ?>
