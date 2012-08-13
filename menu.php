@@ -17,7 +17,7 @@
           <li <?php echo(((strpos($_SERVER['PHP_SELF'], 'editgroup.php'))||(strpos($_SERVER['PHP_SELF'], 'groups.php')))? 'class="active"':null) ?>><a href="groups.php"><i class=" icon-tags"></i> Groups</a></li>
           
           <li class="nav-header">New Members</li>
-          <li <?php echo(strpos($_SERVER['PHP_SELF'], 'newusers.php'))? 'class="active"':null) ?>><a href="newusers.php"><i class="icon-inbox"></i> Approve Members</a></li>
+          <li <?php echo((strpos($_SERVER['PHP_SELF'], 'newusers.php'))? 'class="active"':null) ?>><a href="newusers.php"><i class="icon-inbox"></i> Approve Members</a></li>
           <?php endif; ?>
         </ul>
       </div><!--/.well -->
