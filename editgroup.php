@@ -70,8 +70,8 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <form class="well form-inline" action="editgroup.php?group=<?php echo $gname; ?>" method="post">
-                    <input type="text" class="input-xlarge" placeholder="Username" name="newuser">
+                <form class="well form-inline" action="editgroup.php?group=<?php echo $gname; ?>" method="post" id="form">
+                    <input type="text" class="input-xlarge required" placeholder="Username" name="newuser">
                     <button type="submit" class="btn">Add Member</button>
                 </form>
 

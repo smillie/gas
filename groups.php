@@ -90,8 +90,8 @@
                 <?php endforeach; ?>
                 </tbody>
               </table>    
-                <form class="well form-inline" action="groups.php" method="post">
-                    <input type="text" class="input-xlarge" placeholder="Group Name" name="newgroup">
+                <form class="well form-inline" action="groups.php" method="post" id="form">
+                    <input type="text" class="input-xlarge required" placeholder="Group Name" name="newgroup">
                     <button type="submit" class="btn">Add Group</button>
                 </form>
     </div>
