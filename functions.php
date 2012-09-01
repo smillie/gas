@@ -15,6 +15,7 @@
     }
     
     function normalise($name) {
+    // remove whitespace
     $name = preg_replace( '/\s+/', '', $name);
     $name = strtolower($name);
     return $name;

@@ -19,6 +19,6 @@ class GenerateUsernameTest extends PHPUnit_Framework_TestCase
     public function testDoubleBarrelled()
     {
         $uid = generateUsername('John', 'Smith-Doe');
-        $this -> assertEquals($uid, 'jsmithdoe');
+        $this -> assertEquals($uid, 'jsmith-doe');
     }
 }
