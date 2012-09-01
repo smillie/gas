@@ -10,7 +10,7 @@
       $first = $_POST['firstname'];
       $last = $_POST['lastname'];
       $stuno = $_POST['studentnumber'];
-      $uid = strtolower(substr($first, 0, 1).$last);
+      $uid = generateUsername($first, $last);
       $email = $_POST['email'];
       
       $mysqli = new mysqli($conf['db_host'], $conf['db_user'], $conf['db_pass'], $conf['db_name']);

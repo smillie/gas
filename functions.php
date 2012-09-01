@@ -1,5 +1,25 @@
 <?php
 
+    function generateUsername($first, $last) {
+    // remove whitespace from the first name
+    $first = normalise($first);
+    // then take the first initial
+    $username = substr($first, 0, 1);
+    // remove whitespace from the surname
+    $last = normalise($last);
+    
+    // append the surname 
+    $username = $username . $last;
+    
+    return $username;
+    }
+    
+    function normalise($name) {
+    $name = preg_replace( '/\s+/', '', $name);
+    $name = strtolower($name);
+    return $name;
+    }
+    
     function generatePassword ($length = 8) {
         $password = "";
         $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
