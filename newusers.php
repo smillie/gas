@@ -22,7 +22,7 @@
               $error = $returnMessage;
           }
           
-          if (isset($success) && $stmt = $mysqli->prepare("DELETE FROM newusers WHERE id = ?")) {
+          if (isset($success) && $stmt = $mysqli->prepare("UPDATE newusers SET IS_DELETED=true WHERE id = ?")) {
           
                 $stmt->bind_param('i', $_GET['id']);
           
@@ -53,7 +53,7 @@
       }
       
       /* Create the prepared statement */
-        if ($stmt = $mysqli->prepare("SELECT * FROM newusers")) {
+        if ($stmt = $mysqli->prepare("SELECT ID, firstname, lastname, username, studentnumber, email FROM newusers WHERE IS_DELETED = false")) {
 
                 /* Execute the prepared Statement */
                 $stmt->execute();
@@ -137,8 +137,21 @@
                             <td><a href="newusers.php?action=delete&id=<?php echo $user['id']; ?>" class="btn btn-danger btn-mini">Delete</a></td>
                         </tr>
                     <?php endforeach; ?>
+                    
+                    <?php foreach ($created as $user) : ?>
+                        <tr class="muted">
+                        <td></td>
+                            <td><?php echo $user['uid']; ?></td>
+                            <td><?php echo $user['first'] . " " . $user['last']; ?></td>
+                            <td><?php echo $user['stuno']; ?></td>
+                            <td><a href="mailto:<?php echo $user['email']; ?>"><?php echo $user['email']; ?></a></td>
+                            <td></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
               </table>
         <?php endif; ?>
+        
+                      <p><a href="memberreport.php">Download CSV of all new members</a></p>
     </div>
 <?php require 'footer.php'; ?>
