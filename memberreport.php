@@ -65,7 +65,7 @@
       if($haspaid == "TRUE") {
         $u['paid'] = "Paid";
         $users[] = $u;
-      } elseif(strpos($status, "Expir") && $haspaid == "FALSE") {
+      } elseif(!(strpos($status, "Expir")) && $haspaid == "FALSE") {
           $u['paid'] = "Not Paid";
           $users[] = $u;
         }
