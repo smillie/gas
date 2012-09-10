@@ -93,7 +93,7 @@ EOT;
 
                   <div class="">
                       <br />
-                      <p>By submitting this form you agree to abide by the Terms of Service.</p>
+                      <p>By submitting this form you agree to abide by the <a href="http://geeksoc.org/wp-content/uploads/2011/12/tos.pdf">Terms of Service</a>.</p>
                      <a href="index.php" class="btn">Cancel</a>
                     <button type="submit" name="register" class="btn btn-primary">Register</button>
                   </div>
