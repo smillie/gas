@@ -15,7 +15,7 @@
   header("Pragma: no-cache");
   header("Expires: 0");
   
-    $users[] = array("First Name","Last Name","Student Number","Email Address", "Has Paid?");
+    $users[] = array("Name","Student Number","Email Address", "Has Paid?");
   
     $searchPattern = "(hasPaid=TRUE)";
     $search = ldap_search($con, $dn, $searchPattern);
