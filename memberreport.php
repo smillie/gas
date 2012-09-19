@@ -15,6 +15,7 @@
   header("Pragma: no-cache");
   header("Expires: 0");
   
+    $users[] = array("First Name","Last Name","Student Number","Email Address", "Has Paid?");
   
     $searchPattern = "(hasPaid=TRUE)";
     $search = ldap_search($con, $dn, $searchPattern);
@@ -44,7 +45,6 @@
             $stmt->execute();
 
             $stmt->bind_result($id, $first, $last, $uid, $stuno, $email, $created);
-            $users[] = array("First Name","Last Name","Student Number","Email Address", "Has Paid?");
             while ($stmt->fetch()) {
 
                   $u['name'] = $first." ".$last;
