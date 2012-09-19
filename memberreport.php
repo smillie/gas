@@ -24,9 +24,8 @@
             $stmt->bind_result($id, $first, $last, $uid, $stuno, $email, $created);
             $users[] = array("First Name","Last Name","Student Number","Email Address", "Has Paid?");
             while ($stmt->fetch()) {
-                  // printf("%s %s %s %i %s\n", $first, $last, $uid, $stuno, $email);
-                  $u['first'] = $first;
-                  $u['last'] = $last;
+
+                  $u['name'] = $first.$last;
                   $u['stuno'] = $stuno;
                   $u['email'] = $email;
                   $u['paid'] = "Not Paid";
@@ -41,31 +40,24 @@
             /* Error */
     }
     
-    $searchPattern = "(objectclass=posixaccount)";
+    $searchPattern = "(hasPaid=TRUE)";
     $search = ldap_search($con, $dn, $searchPattern);
     ldap_sort($con, $search, 'uid');
     $results = ldap_get_entries($con, $search);
 
     if (ldap_count_entries($con, $search) == 1){
         $ruser = $results[0]['uid'][0];
-        header( 'Location: edit.php?user='.$ruser );
     } else if (ldap_count_entries($con, $search) == 0) {
         $error = "No results for '$pattern'";
     }
     
     foreach (array_slice($results, 1) as $user) {
-      $u['first'] = $user['uid'][0];
-      $u['last'] = $user['cn'][0];
+      $u['name'] = $user['cn'][0];
       $u['stuno'] = $user['studentnumber'][0];
       $u['email'] = $user['mail'][0];
-      $haspaid = $user['haspaid'][0];
-      $status = getStatus($user['shadowexpire'][0], $user['haspaid'][0]);
-      $u['paid'] = "Not Paid";
-      
-      if($haspaid == "TRUE") {
-        $u['paid'] = "Paid";
-        $users[] = $u;
-      }
+      $u['paid'] = "Paid";
+
+      $users[] = $u;
       
     }
 
