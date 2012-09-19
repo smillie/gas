@@ -14,6 +14,28 @@
   header("Content-Disposition: attachment; filename=gs_members.csv");
   header("Pragma: no-cache");
   header("Expires: 0");
+  
+  
+    $searchPattern = "(hasPaid=TRUE)";
+    $search = ldap_search($con, $dn, $searchPattern);
+    ldap_sort($con, $search, 'uid');
+    $results = ldap_get_entries($con, $search);
+
+    if (ldap_count_entries($con, $search) == 1){
+        $ruser = $results[0]['uid'][0];
+    } else if (ldap_count_entries($con, $search) == 0) {
+        $error = "No results for '$pattern'";
+    }
+
+    foreach (array_slice($results, 1) as $user) {
+      $u['name'] = $user['cn'][0];
+      $u['stuno'] = $user['studentnumber'][0];
+      $u['email'] = $user['mail'][0];
+      $u['paid'] = "Paid";
+
+      $users[] = $u;
+  
+    }
 
   /* Create the prepared statement */
     if ($stmt = $mysqli->prepare("SELECT ID, firstname, lastname, username, studentnumber, email, IS_DELETED FROM newusers WHERE IS_DELETED = false")) {
@@ -25,7 +47,7 @@
             $users[] = array("First Name","Last Name","Student Number","Email Address", "Has Paid?");
             while ($stmt->fetch()) {
 
-                  $u['name'] = $first.$last;
+                  $u['name'] = $first." ".$last;
                   $u['stuno'] = $stuno;
                   $u['email'] = $email;
                   $u['paid'] = "Not Paid";
@@ -38,27 +60,6 @@
     }
     else {
             /* Error */
-    }
-    
-    $searchPattern = "(hasPaid=TRUE)";
-    $search = ldap_search($con, $dn, $searchPattern);
-    ldap_sort($con, $search, 'uid');
-    $results = ldap_get_entries($con, $search);
-
-    if (ldap_count_entries($con, $search) == 1){
-        $ruser = $results[0]['uid'][0];
-    } else if (ldap_count_entries($con, $search) == 0) {
-        $error = "No results for '$pattern'";
-    }
-    
-    foreach (array_slice($results, 1) as $user) {
-      $u['name'] = $user['cn'][0];
-      $u['stuno'] = $user['studentnumber'][0];
-      $u['email'] = $user['mail'][0];
-      $u['paid'] = "Paid";
-
-      $users[] = $u;
-      
     }
 
   outputCSV($users);
