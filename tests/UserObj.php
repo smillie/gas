@@ -47,6 +47,24 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 		$this -> assertEquals('Bob', $name);
 	}
 	
+	public function testCaseDoubleBarrelAlreadyCorrect()
+	{
+	    $name = $this -> instance -> tidy("John-Doe");
+	    $this -> assertEquals('John-Doe', $name);
+	}
+	
+	public function testCaseDoubleBarrelAllCaps()
+	{
+	    $name = $this -> instance -> tidy("JOHN-DOE");
+	    $this -> assertEquals('John-Doe', $name);
+	}
+	
+	public function testCaseDoubleBarrelAllLower()
+	{
+	    $name = $this -> instance -> tidy("john-doe");
+	    $this -> assertEquals('John-Doe', $name);
+	}
+	
 	public function testNoForename()
 	{
 		$validation = $this -> instance -> validate();

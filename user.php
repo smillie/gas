@@ -79,7 +79,7 @@ class User
 	function tidy($string)
 	{
 		$string = trim($string);
-		$string = ucfirst(strtolower($string));
+		$string = mb_convert_case($string, MB_CASE_TITLE);
 		
 		return $string;
 	}
