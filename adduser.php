@@ -7,18 +7,28 @@ if (!isUserInGroup($con, $user, "gsag")) {
     $pageTitle = ' - Add User';    
 
     if (isset($_POST['firstname']) && strlen($_POST['uid']) > 2) {
+		$user = new User();
         $uid = $_POST['uid'];
-        $first = ucfirst($_POST['firstname']);
-        $last = ucfirst($_POST['lastname']);
-        $stuno = $_POST['studentnumber'];
-        $email = $_POST['email'];
         
-        $returnMessage = addUser($uid, $first, $last, $stuno, $email);
-        if (substr($returnMessage, 0, 1) =='S') {
-            $success = substr($returnMessage, 2);
-        } else {
-            $error = $returnMessage;
-        }
+		$user -> setName($_POST['firstname'], $_POST['lastname']);
+        $user -> setStudentNumber($_POST['studentnumber']);
+        $user -> setEmail($_POST['email']);
+        
+		$validation = user.validate();
+		if (count($validation) == 0)
+		{
+			
+	        $returnMessage = addUser($uid, $user -> firstName(), $user -> lastName(), $user -> studentNumber(), $user -> email());
+	        if (substr($returnMessage, 0, 1) =='S') {
+	            $success = substr($returnMessage, 2);
+	        } else {
+	            $error = $returnMessage;
+	        }
+		}
+		else
+		{
+			$error = implode(', ', $validation);
+		}
 
    }
 ?>
