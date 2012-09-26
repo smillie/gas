@@ -1,6 +1,6 @@
 <?php
 
-require('../functions.php');
+require_once(dirname(__FILE__) . '/../functions.php');
 
 class ComputeExpiryTest extends PHPUnit_Framework_TestCase
 {
