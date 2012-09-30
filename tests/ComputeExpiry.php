@@ -31,6 +31,6 @@ class ComputeExpiryTest extends PHPUnit_Framework_TestCase
     {
         $expiry = computeExpiry($this -> threshold);
         
-        $this -> assertEquals($this -> expiry, $expiry);
+        $this -> assertEquals($this -> nextExpiry, $expiry);
     }
 }
