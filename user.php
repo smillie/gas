@@ -46,7 +46,7 @@ class User
 	
 	function validate()
 	{
-		$errors = [];
+		$errors = array();
 		
 		if (!is_numeric($this -> studentNumber) 
 			|| strlen($this -> studentNumber) != 9)
