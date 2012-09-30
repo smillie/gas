@@ -21,6 +21,23 @@
     return $name;
     }
     
+    function computeExpiry($date) {
+		
+        $nextExpiry = strtotime('first Friday of October', $date);
+        $threshold = strtotime('last Friday of May', $date);
+        
+		if ($date < $threshold)
+		{
+			$expiry = $nextExpiry;
+		}
+		else
+		{
+			 $expiry = strtotime('first Friday of October', $date + 365 * 24 * 60 * 60);
+		}
+		
+		return $expiry;        
+    }
+    
     function generatePassword ($length = 8) {
         $password = "";
         $possible = "2346789bcdfghjkmnpqrtvwxyzBCDFGHJKLMNPQRTVWXYZ";
@@ -134,7 +151,7 @@
             $uidno += 1;
 
         //compute expiry date
-            $expiry = 15988;
+            $expiry = computeExpiry(date());
 
         //generate password
             $pass = generatePassword(); 
