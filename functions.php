@@ -88,24 +88,27 @@
         $day = intval(time()/(60*60*24));
         $i = (int)$expiry;
         if (!isset($expiry)) $i=99999;
-        $status = "Active";
-        $stat_icon = "icon-ok";
-        if ($paid == "FALSE") {
-          $status = "Not Paid";
-          $stat_icon = "icon-exclamation-sign";
-        } 
-        if ($i <= ($day+60)) {
-          $status = "Expiring";
-          $stat_icon = "icon-time";
-        }
-        if ($i <= $day) {
-          $status = "Expired";
-          $stat_icon = "icon-time";
-        }
+
         if ($i == 1) {
-          $status = "Administratively Disabled";
-          $stat_icon = "icon-ban-circle";
+            $status = "Administratively Disabled";
+            $stat_icon = "icon-ban-circle";
+        } elseif ($i <= $day) {
+            $status = "Expired";
+            $stat_icon = "icon-time";
+        } elseif ($i <= ($day+60) && $paid == "FALSE") {
+            $status = "Expiring (Not Paid)";
+            $stat_icon = "icon-time";
+        } elseif ($i <= ($day+60)) {
+            $status = "Expiring";
+            $stat_icon = "icon-time";
+        } elseif ($paid == "FALSE") {
+            $status = "Not Paid";
+            $stat_icon = "icon-exclamation-sign";
+        } else {
+            $status = "Active";
+            $stat_icon = "icon-ok";
         }
+
         return "<i class='$stat_icon'></i> $status";
     }
 
