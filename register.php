@@ -12,10 +12,10 @@
       $user -> setName($_POST['firstname'], $_POST['lastname']);
       $user -> setStudentNumber($_POST['studentnumber']);
       $user -> setEmail($_POST['email']);
-      $uid = generateUsername($first, $last);
       
       $first = $user -> firstName();
       $last = $user -> lastName();
+      $uid = generateUsername($first, $last);
       $email = $user -> email();
       $stuno = $user -> studentNumber();
       
