@@ -1,4 +1,5 @@
 <?php require 'ldapconnect.php'; ?>
+<?php require 'user.php'; ?>
 <?php
   if(isset($_SESSION['user'])) {
     header( 'Location: details.php' );
