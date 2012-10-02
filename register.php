@@ -7,11 +7,18 @@
   $pageTitle = "- Join";
   
   if (isset($_POST['register']) && strlen($_POST['firstname'])>2 &&  strlen($_POST['lastname'])>2 ) {
-      $first = $_POST['firstname'];
-      $last = $_POST['lastname'];
-      $stuno = $_POST['studentnumber'];
+      $user = new User();
+      $user -> setName($_POST['firstname'], $_POST['lastname']);
+      $user -> setStudentNumber($_POST['studentnumber'];
+      $user -> setEmail($_POST['email']);
       $uid = generateUsername($first, $last);
-      $email = $_POST['email'];
+      
+      $first = $user -> firstName();
+      $last = $user -> lastName();
+      $email = $user -> email();
+      $stuno = $user -> studentNumber();
+      
+      if (count($user -> validate()) == 0) {
       
       $mysqli = new mysqli($conf['db_host'], $conf['db_user'], $conf['db_pass'], $conf['db_name']);
       if (mysqli_connect_errno()) {
@@ -51,6 +58,7 @@ EOT;
       mailNotify("gsag@geeksoc.org", "[GeekSoc] New member registered", $adminEmail);
       
   }
+}
 ?>
 <?php require 'header.php'; ?>
 
