@@ -9,7 +9,7 @@
   if (isset($_POST['register']) && strlen($_POST['firstname'])>2 &&  strlen($_POST['lastname'])>2 ) {
       $user = new User();
       $user -> setName($_POST['firstname'], $_POST['lastname']);
-      $user -> setStudentNumber($_POST['studentnumber'];
+      $user -> setStudentNumber($_POST['studentnumber']);
       $user -> setEmail($_POST['email']);
       $uid = generateUsername($first, $last);
       
