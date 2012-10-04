@@ -154,7 +154,7 @@
             $uidno += 1;
 
         //compute expiry date
-            $expiry = computeExpiry(date());
+            $expiry = computeExpiry(date()) / (24 * 60 * 60);
 
         //generate password
             $pass = generatePassword(); 
