@@ -33,4 +33,12 @@ class ComputeExpiryTest extends PHPUnit_Framework_TestCase
         
         $this -> assertEquals($this -> nextExpiry, $expiry);
     }
+    
+    public function testAfterBoth()
+    {
+        $date = $this -> expiry + (7 * 24 * 60 * 60);
+        $expiry = computeExpiry($date);
+        
+        $this -> assertEquals($this -> nextExpiry, $expiry);
+    }
 }
