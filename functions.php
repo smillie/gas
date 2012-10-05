@@ -35,6 +35,7 @@
 			 $expiry = strtotime('first Friday of October', $date + 365 * 24 * 60 * 60);
 		}
 		
+		$expiry = $expiry / (24 * 60 * 60);
 		return $expiry;        
     }
     
@@ -154,7 +155,7 @@
             $uidno += 1;
 
         //compute expiry date
-            $expiry = computeExpiry(date()) / (24 * 60 * 60);
+            $expiry = computeExpiry(date());
 
         //generate password
             $pass = generatePassword(); 
