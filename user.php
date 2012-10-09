@@ -14,7 +14,10 @@ class User
 		$this -> forename = $this -> tidy($first);
 		$this -> surname = $this -> tidy($last);
 		
-		$this -> generateUsername();
+		if (!$this -> username)
+		{
+		    $this -> generateUsername();
+		}
 	}
 	
 	function setStudentNumber($number)
