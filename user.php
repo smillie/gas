@@ -47,22 +47,53 @@ class User
 	function validate()
 	{
 		$errors = array();
+		$errors = array_merge($errors, $this -> validateStudentNumber());
+		$errors = array_merge($errors, $this -> validateFirstName());
+		$errors = array_merge($errors, $this -> validateSurname());
+		$errors = array_merge($errors, $this -> validateEmail());
 		
+		return $errors;
+	}
+	
+	function validateStudentNumber()
+	{
+		$errors = array();
 		if (!is_numeric($this -> studentNumber) 
 			|| strlen($this -> studentNumber) != 9)
 		{
 			$errors[] = "Student number invalid";
 		}
 		
+		return $errors;
+	}
+	
+	function validateFirstName()
+	{
+		$errors = array();
+		
 		if (strlen($this -> forename) == 0)
 		{
 			$errors[] = "No first name entered";
 		}
 		
+		return $errors;
+	}
+	
+	function validateSurname()
+	{	
+		$errors = array();
+			
 		if (strlen($this -> surname) == 0)
 		{
 			$errors[] = "No last name entered";
 		}
+		
+		return $errors;
+	}
+	
+	function validateEmail()
+	{		
+		$errors = array();
 		
 		if (strlen($this -> email) == 0)
 		{
