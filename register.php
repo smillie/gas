@@ -40,7 +40,7 @@
               $stmt->close(); 
       }
       else {
-              /* Error */
+              echo("An error occurred.");
       }
       
       
