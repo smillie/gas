@@ -7,11 +7,14 @@ class User
 	private $forename;
 	private $surname;
 	private $studentNumber;
+	private $username;
 	
 	function setName($first, $last)
 	{
 		$this -> forename = $this -> tidy($first);
 		$this -> surname = $this -> tidy($last);
+		
+		$this -> generateUsername();
 	}
 	
 	function setStudentNumber($number)
@@ -42,6 +45,11 @@ class User
 	function studentNumber()
 	{
 		return $this -> studentNumber;
+	}
+	
+	function username()
+	{
+	    return $this -> username;
 	}
 	
 	function validate()
@@ -107,13 +115,42 @@ class User
 		return $errors;
 	}
 	
-	function tidy($string)
+	function generateUsername()
+	{
+	    $first = $this -> forename;
+	    $last = $this -> surname;
+        // remove whitespace from the first name
+        $first = $this -> normalise($first);
+        // then take the first initial
+        $username = substr($first, 0, 1);
+        // remove whitespace from the surname
+        $last = $this -> normalise($last);
+    
+        // append the surname 
+        $username = $username . $last;
+    
+        $this -> username = $username;
+    }
+    
+    function normalise($name)
+    {
+        // remove whitespace
+        $name = preg_replace( '/\s+/', '', $name);
+        $name = strtolower($name);
+        return $name;
+    }
+    
+ 	function tidy($string)
 	{
 		$string = trim($string);
 		$string = mb_convert_case($string, MB_CASE_TITLE);
 		
 		return $string;
 	}
+	
+
+    
+
 }
 
 ?>

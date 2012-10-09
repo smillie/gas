@@ -1,24 +1,33 @@
 <?php
 
 require_once(dirname(__FILE__) . '/../functions.php');
+require_once(dirname(__FILE__) . '/../user.php');
 
 class GenerateUsernameTest extends PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        $this -> user = new User();
+    }
+    
     public function testOneWordEach()
     {
-        $uid = generateUsername('John', 'Smith');
+        $this -> user -> setName('John', 'Smith');
+        $uid = $this -> user -> username();
         $this -> assertEquals($uid, 'jsmith');
     }
     
     public function testTwoWordSurname()
     {
-        $uid = generateUsername('james', 'Van der Beek');
+        $this -> user -> setName('james', 'Van der Beek');
+        $uid = $this -> user -> username();
         $this -> assertEquals($uid, 'jvanderbeek');
     }
     
     public function testDoubleBarrelled()
     {
-        $uid = generateUsername('John', 'Smith-Doe');
+        $this -> user -> setName('John', 'Smith-Doe');
+        $uid = $this -> user -> username();
         $this -> assertEquals($uid, 'jsmith-doe');
     }
 }
