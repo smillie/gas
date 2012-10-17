@@ -108,6 +108,18 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 		$this -> assertEquals($expected, $this -> instance -> lastName());
 	}
 	
+	public function testOName()
+	{
+	    $input = "o'Mally";
+	    $expected = "o'Mally";
+	    
+	    $name = $this -> instance -> tidy($input);
+	    $this -> assertEquals($expected, $name);
+	    
+	    $this -> instance -> setName("", $input);
+	    $this -> assertEquals($expected, $this -> instance -> lastName());
+	}
+	
 	public function testNoForename()
 	{
 		$validation = $this -> instance -> validate();
