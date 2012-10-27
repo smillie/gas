@@ -195,6 +195,7 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 		}
 	}
 	
+/*	
 	public function testNoStudentNumber()
 	{
 		$validation = $this -> instance -> validate();
@@ -204,6 +205,7 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 		$this -> assertContains("Student number invalid", $validation);
 	}
 	
+	*/
 	public function testShortStudentNumber()
 	{
 		$this -> instance -> setStudentNumber(123);
