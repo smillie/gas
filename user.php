@@ -58,7 +58,11 @@ class User
 	function validate()
 	{
 		$errors = array();
-		$errors = array_merge($errors, $this -> validateStudentNumber());
+		
+		if ($this -> studentNumber)
+		{
+    		$errors = array_merge($errors, $this -> validateStudentNumber());
+		}
 		$errors = array_merge($errors, $this -> validateFirstName());
 		$errors = array_merge($errors, $this -> validateSurname());
 		$errors = array_merge($errors, $this -> validateEmail());
