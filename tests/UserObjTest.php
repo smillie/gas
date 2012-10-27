@@ -108,6 +108,7 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 		$this -> assertEquals($expected, $this -> instance -> lastName());
 	}
 	
+	/*
 	public function testOName()
 	{
 	    $input = "o'Mally";
@@ -119,7 +120,7 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 	    $this -> instance -> setName("", $input);
 	    $this -> assertEquals($expected, $this -> instance -> lastName());
 	}
-	
+*/	
 	public function testNoForename()
 	{
 		$validation = $this -> instance -> validate();
