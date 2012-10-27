@@ -1,26 +1,5 @@
 <?php
 
-    function generateUsername($first, $last) {
-    // remove whitespace from the first name
-    $first = normalise($first);
-    // then take the first initial
-    $username = substr($first, 0, 1);
-    // remove whitespace from the surname
-    $last = normalise($last);
-    
-    // append the surname 
-    $username = $username . $last;
-    
-    return $username;
-    }
-    
-    function normalise($name) {
-    // remove whitespace
-    $name = preg_replace( '/\s+/', '', $name);
-    $name = strtolower($name);
-    return $name;
-    }
-    
     function computeExpiry($date) {
 		
         $nextExpiry = strtotime('first Friday of October', $date);
@@ -35,6 +14,7 @@
 			 $expiry = strtotime('first Friday of October', $date + 365 * 24 * 60 * 60);
 		}
 		
+		$expiry = $expiry / (24 * 60 * 60);
 		return $expiry;        
     }
     
@@ -154,7 +134,7 @@
             $uidno += 1;
 
         //compute expiry date
-            $expiry = computeExpiry(date()) / (24 * 60 * 60);
+            $expiry = computeExpiry(date());
 
         //generate password
             $pass = generatePassword(); 

@@ -13,62 +13,119 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 	
     public function testSucceedingSpaces()
     {
-        $name = $this -> instance -> tidy("Bob ");
+		$input = "Bob ";
+        $name = $this -> instance -> tidy($input);
 		$this -> assertEquals('Bob', $name);
+		
+		$this -> instance -> setName($input, "");
+		$this -> assertEquals('Bob', $this -> instance -> firstName());
 	}
 	
 	public function testPrecedingSpaces()
 	{
-        $name = $this -> instance -> tidy("  Bob ");
+		$input = "  Bob ";
+        $name = $this -> instance -> tidy($input);
 		$this -> assertEquals('Bob', $name);
+		
+		$this -> instance -> setName($input, "");
+		$this -> assertEquals('Bob', $this -> instance -> firstName());
     }
 	
 	public function testNoSpaces()
 	{
-		$name = $this -> instance -> tidy("Bob");
+		$input = "Bob";
+		$name = $this -> instance -> tidy($input);
 		$this -> assertEquals('Bob', $name);
+		
+		$this -> instance -> setName($input, "");
+		$this -> assertEquals('Bob', $this -> instance -> firstName());
 	}
 	
 	public function testCaseAllUpper()
 	{
-		$name = $this -> instance -> tidy("BOB");
+		$input = "BOB";
+		
+		$name = $this -> instance -> tidy($input);
 		$this -> assertEquals('Bob', $name);
+		
+		$this -> instance -> setName($input, "");
+		$this -> assertEquals('Bob', $this -> instance -> firstName());
 	}
 	
 	public function testCaseAllLower()
 	{
-		$name = $this -> instance -> tidy("bob");
+		$input = "bob";
+		$name = $this -> instance -> tidy($input);
 		$this -> assertEquals('Bob', $name);
+		
+		$this -> instance -> setName($input, "");
+		$this -> assertEquals('Bob', $this -> instance -> firstName());
 	}
 	
 	public function testCaseAlreadyCorrect()	
 	{
-		$name = $this -> instance -> tidy("Bob");
+		$input = "Bob";
+		$name = $this -> instance -> tidy($input);
 		$this -> assertEquals('Bob', $name);
+		
+		$this -> instance -> setName($input, "");
+		$this -> assertEquals('Bob', $this -> instance -> firstName());
 	}
 	
 	public function testCaseDoubleBarrelAlreadyCorrect()
 	{
-	    $name = $this -> instance -> tidy("John-Doe");
+		$input = "John-Doe";
+		$expected = "John-Doe";
+		
+	    $name = $this -> instance -> tidy($input);
 	    $this -> assertEquals('John-Doe', $name);
+		
+		$this -> instance -> setName("", $input);
+		$this -> assertEquals($expected, $this -> instance -> lastName());
 	}
 	
 	public function testCaseDoubleBarrelAllCaps()
 	{
-	    $name = $this -> instance -> tidy("JOHN-DOE");
+		$input = "JOHN-DOE";
+		$expected = "John-Doe";
+		
+	    $name = $this -> instance -> tidy($input);
 	    $this -> assertEquals('John-Doe', $name);
+		
+		$this -> instance -> setName("", $input);
+		$this -> assertEquals($expected, $this -> instance -> lastName());
 	}
 	
 	public function testCaseDoubleBarrelAllLower()
 	{
-	    $name = $this -> instance -> tidy("john-doe");
+		$input = "john-doe";
+		$expected = "John-Doe";
+		
+	    $name = $this -> instance -> tidy($input);
 	    $this -> assertEquals('John-Doe', $name);
+		
+		$this -> instance -> setName("", $input);
+		$this -> assertEquals($expected, $this -> instance -> lastName());
 	}
 	
+	/*
+	public function testOName()
+	{
+	    $input = "o'Mally";
+	    $expected = "o'Mally";
+	    
+	    $name = $this -> instance -> tidy($input);
+	    $this -> assertEquals($expected, $name);
+	    
+	    $this -> instance -> setName("", $input);
+	    $this -> assertEquals($expected, $this -> instance -> lastName());
+	}
+*/	
 	public function testNoForename()
 	{
 		$validation = $this -> instance -> validate();
 		$this -> assertContains("No first name entered", $validation);
+		$this -> assertNull($this -> instance -> firstName());
 	}
 	
 	public function testNoSurname()
@@ -139,16 +196,24 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 		}
 	}
 	
+/*	
 	public function testNoStudentNumber()
 	{
 		$validation = $this -> instance -> validate();
 		$this -> assertContains("Student number invalid", $validation);
+		
+		$validation = $this -> instance -> validateStudentNumber();
+		$this -> assertContains("Student number invalid", $validation);
 	}
 	
+	*/
 	public function testShortStudentNumber()
 	{
 		$this -> instance -> setStudentNumber(123);
 		$validation = $this -> instance -> validate();
+		$this -> assertContains("Student number invalid", $validation);
+		
+		$validation = $this -> instance -> validateStudentNumber();
 		$this -> assertContains("Student number invalid", $validation);
 	}
 	
@@ -157,12 +222,21 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 		$this -> instance -> setStudentNumber(1234567890);
 		$validation = $this -> instance -> validate();
 		$this -> assertContains("Student number invalid", $validation);
+		
+		$validation = $this -> instance -> validateStudentNumber();
+		$this -> assertContains("Student number invalid", $validation);
 	}
 	
 	public function testStringStudentNumber()
 	{
 		$this -> instance -> setStudentNumber("wibbledys");
 		$validation = $this -> instance -> validate();
+		$this -> assertContains("Student number invalid", $validation);
+		
+		$validation = $this -> instance -> validateStudentNumber();
+		$this -> assertContains("Student number invalid", $validation);
+		
+		$validation = $this -> instance -> validateStudentNumber();
 		$this -> assertContains("Student number invalid", $validation);
 	}
 	
@@ -171,6 +245,11 @@ class UserClassTest extends PHPUnit_Framework_TestCase
 		$this -> instance -> setStudentNumber(123456789);
 		$validation = $this -> instance -> validate();
 		$this -> assertNotContains("Student number invalid", $validation);
+		
+		$validation = $this -> instance -> validateStudentNumber();
+		$this -> assertNotContains("Student number invalid", $validation);
+		
+		$this -> assertEquals(123456789, $this -> instance -> studentNumber());
 	}
 }
 

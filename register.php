@@ -15,9 +15,9 @@
       
       $first = $user -> firstName();
       $last = $user -> lastName();
-      $uid = generateUsername($first, $last);
       $email = $user -> email();
       $stuno = $user -> studentNumber();
+      $uid = $user -> username();
       
       if (count($user -> validate()) == 0) {
       
@@ -40,7 +40,7 @@
               $stmt->close(); 
       }
       else {
-              /* Error */
+              echo("An error occurred.");
       }
       
       
